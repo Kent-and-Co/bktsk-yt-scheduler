@@ -60,19 +60,31 @@ function bktsk_yt_scheduler_add_meta_box() {
 
 function bktsk_yt_scheduler_meta_html() {
 	global $post;
-	$custom = get_post_custom( $post->ID );
+	$bktsk_yt_scheduler_custom = get_post_custom( $post->ID );
+	$wp_timezone               = get_option( 'timezone_string' );
 	//メタキーがあったら
-	if ( ! empty( $custom ) ) {
-		$live_start = $custom['live_start'][0];
-		$live_end   = $custom['live_end'][0];
+	if ( ! empty( $bktsk_yt_scheduler_custom['bktsk_yt_live_start'] ) ) {
+		$live_start = new DateTime( $bktsk_yt_scheduler_custom['bktsk_yt_live_start'][0], new DateTimeZone( 'UTC' ) );
+
+		$live_start->setTimezone( new DateTimeZone( $wp_timezone ) );
+
 		//開始時間
-		$live_start_date = date( 'Y-m-d', strtotime( $live_start ) );
-		$live_start_time = date( 'H:i', strtotime( $live_start ) );
-		//終了時間
-		$live_end_date = date( 'Y-m-d', strtotime( $live_end ) );
-		$live_end_time = date( 'H:i', strtotime( $live_end ) );
+		$bktsk_yt_live_start_date = $live_start->format( 'Y-m-d' );
+		$bktsk_yt_live_start_time = $live_start->format( 'H:i' );
 	}
-	echo '<input type="hidden" name="bktskytlive-live-nonce" id="bktskytlive-live-nonce" value="' . wp_create_nonce( 'bktskytlive-live-nonce' ) . '">';
+
+	if ( ! empty( $bktsk_yt_scheduler_custom['bktsk_yt_live_end'] ) ) {
+		$live_end = new DateTime( $bktsk_yt_scheduler_custom['bktsk_yt_live_end'][0], new DateTimeZone( 'UTC' ) );
+
+		$live_end->setTimezone( new DateTimeZone( $wp_timezone ) );
+
+		//開始時間
+		$bktsk_yt_live_end_date = $live_end->format( 'Y-m-d' );
+		$bktsk_yt_live_end_time = $live_end->format( 'H:i' );
+	}
+
+	$timezone = new DateTime( null, new DateTimeZone( $wp_timezone ) );
+	wp_nonce_field( 'bktskytlive-live-info-update', 'bktskytlive-live-nonce' );
 
 	//入力フィールドの表示
 	?>
@@ -86,18 +98,18 @@ function bktsk_yt_scheduler_meta_html() {
 	<script>
 	jQuery(document).ready(function ($) {// initialize input widgets first
 		// initialize input widgets first
-		$('#jqueryExample .time').timepicker({
+		$('#bktsk_yt_live .time').timepicker({
 			'showDuration': true,
 			'timeFormat': 'H:i'
 		});
 
-		$('#jqueryExample .date').datepicker({
+		$('#bktsk_yt_live .date').datepicker({
 			'dateFormat': 'yy-mm-dd',
 			'autoclose': true
 		});
 
 		// initialize datepair
-		$('#jqueryExample').datepair({
+		$('#bktsk_yt_live').datepair({
 			parseDate: function (el) {
 				var val = $(el).datepicker('getDate');
 				if (!val) {
@@ -116,38 +128,40 @@ function bktsk_yt_scheduler_meta_html() {
 	<table>
 		<tr>
 			<th><?php _e( 'Live Schedule', 'BktskYtScheduler' ); ?></th>
-			<td id="live-sch">
-				<p id="jqueryExample">
-					<input type="text" class="date start" name="live_start_date" value="
-					<?php
-					if ( $live_start_date ) {
-						echo $live_start_date;
-					}
-					?>
-					">
-					<input type="text" class="time start" name="live_start_time" value="
-					<?php
-					if ( $live_start_time ) {
-						echo $live_start_time;
-					}
-					?>
-					"> to
-					<input type="text" class="date end" name="live_end_date" value="
-					<?php
-					if ( $live_end_date ) {
-						echo $live_end_date;
-					}
-					?>
-					">
-					<input type="text" class="time end" name="live_end_time" value="
-					<?php
-					if ( $live_end_time ) {
-						echo $live_end_time;
-					}
-					?>
-					">
-				</p>
+			<td id="bktsk_yt_live">
+				<input type="text" class="date start" name="bktsk_yt_live_start_date"
+				<?php
+				if ( isset( $bktsk_yt_live_start_date ) ) {
+					echo ' value="' . $bktsk_yt_live_start_date . '"';
+				}
+				?>
+				>
+				<input type="text" class="time start" name="bktsk_yt_live_start_time"
+				<?php
+				if ( isset( $bktsk_yt_live_start_time ) ) {
+					echo ' value="' . $bktsk_yt_live_start_time . '"';
+				}
+				?>
+				> <?php _e( 'to', 'BktskYtScheduler' ); ?>
+				<input type="text" class="date end" name="bktsk_yt_live_end_date"
+				<?php
+				if ( isset( $bktsk_yt_live_end_date ) ) {
+					echo ' value="' . $bktsk_yt_live_end_date . '"';
+				}
+				?>
+				>
+				<input type="text" class="time end" name="bktsk_yt_live_end_time"
+				<?php
+				if ( isset( $bktsk_yt_live_end_time ) ) {
+					echo ' value="' . $bktsk_yt_live_end_time . '"';
+				}
+				?>
+				>
 			</td>
+		</tr>
+		<tr>
+			<th><?php _e( 'TimeZone', 'BktskYtScheduler' ); ?></th>
+			<td><?php echo $timezone->format( 'e (P)' ); ?></td>
 		</tr>
 	</table>
 	</div>
@@ -175,5 +189,33 @@ function bktsk_yt_scheduler_load_jquery( $hook ) {
 			wp_enqueue_style( 'jquery-ui-theme', $style_url . 'jquery-ui.theme.min.css' );
 			wp_enqueue_style( 'jquery-timepicker', $style_url . 'jquery.timepicker.min.css' );
 		}
+	}
+}
+
+// save meta data for custom post type
+
+add_action( 'save_post_bktskytlive', 'bktsk_yt_scheduler_save_fields' );
+
+function bktsk_yt_scheduler_save_fields( $post_id ) {
+	$bktskytlive_live_box_nonce = isset( $_POST['bktskytlive-live-nonce'] ) ? $_POST['bktskytlive-live-nonce'] : null;
+	if ( ! wp_verify_nonce( $bktskytlive_live_box_nonce, 'bktskytlive-live-info-update' ) ) {
+		return;
+	}
+
+	$wp_timezone = get_option( 'timezone_string' );
+	if ( isset( $_POST['bktsk_yt_live_start_date'] ) && isset( $_POST['bktsk_yt_live_start_time'] ) ) {
+		$bktsk_yt_live_start_update = new DateTime( $_POST['bktsk_yt_live_start_date'] . 'T' . $_POST['bktsk_yt_live_start_time'], new DateTimeZone( $wp_timezone ) );
+		$bktsk_yt_live_start_update->setTimezone( new DateTimeZone( 'UTC' ) );
+		update_post_meta( $post_id, 'bktsk_yt_live_start', $bktsk_yt_live_start_update->format( DateTime::ISO8601 ) ); //値を保存
+	} else { //題名未入力の場合
+		delete_post_meta( $post_id, 'bktsk_yt_live_start' ); //値を削除
+	}
+
+	if ( isset( $_POST['bktsk_yt_live_end_date'] ) && isset( $_POST['bktsk_yt_live_end_time'] ) ) {
+		$bktsk_yt_live_end_update = new DateTime( $_POST['bktsk_yt_live_end_date'] . 'T' . $_POST['bktsk_yt_live_end_time'], new DateTimeZone( $wp_timezone ) );
+		$bktsk_yt_live_end_update->setTimezone( new DateTimeZone( 'UTC' ) );
+		update_post_meta( $post_id, 'bktsk_yt_live_end', $bktsk_yt_live_end_update->format( DateTime::ISO8601 ) ); //値を保存
+	} else { //題名未入力の場合
+		delete_post_meta( $post_id, 'bktsk_yt_live_end' ); //値を削除
 	}
 }
