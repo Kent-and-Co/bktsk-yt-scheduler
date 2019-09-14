@@ -26,7 +26,7 @@ function bktsk_yt_scheduler_ics_requests( $wp ) {
 	) {
 
 		header( 'Content-Type: text/calendar; charset=UTF-8' );
-		?>
+		$bktsk_yt_live_calendar = <<<EOF
 BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
 PRODID:-//BKTSK YouTube Live Scheduler for WordPress//Manually//EN
@@ -52,7 +52,9 @@ PRIORITY:0
 CLASS:PUBLIC
 END:VEVENT
 END:VCALENDAR
-		<?php
+EOF;
+
+		echo preg_replace( "/\r\n|\r|\n/", "\r\n", $bktsk_yt_live_calendar );
 		exit;
 	}
 
