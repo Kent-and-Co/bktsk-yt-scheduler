@@ -33,4 +33,5 @@ load_plugin_textdomain(
 );
 
 require_once dirname( __FILE__ ) . '/lib/add-post-type.php'; // for Post Type
+require_once dirname( __FILE__ ) . '/lib/make-ics.php'; // for ics response
 require_once dirname( __FILE__ ) . '/lib/admin-menu.php'; // for Admin Menus
