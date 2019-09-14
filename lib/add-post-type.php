@@ -204,7 +204,7 @@ function bktsk_yt_scheduler_meta_html() {
 			}
 		});
 
-		$('#bktsk_yt_live').val("<?php echo $bktsk_yt_live_type; ?>");
+		$('#bktsk_yt_live_type').val("<?php echo $bktsk_yt_live_type; ?>");
 
 			switch ("<?php echo $bktsk_yt_live_type; ?>") {
 				case 'live_schedule':
@@ -253,7 +253,7 @@ function bktsk_yt_scheduler_meta_html() {
 	});
 	</script>
 	<div id="live-time">
-	<select id='bktsk_yt_type' name="bktsk_yt_live_type">
+	<select id='bktsk_yt_live_type' name="bktsk_yt_live_type">
 		<option value="live_schedule"><?php _e( 'Live Schedule (time fixed)', 'BktskYtScheduler' ); ?></option>
 		<option value="all_day_live_schedule"><?php _e( 'Live Date (time not fixed)', 'BktskYtScheduler' ); ?></option>
 		<option value="day_off"><?php _e( 'Live Day Off (decided not to live)', 'BktskYtScheduler' ); ?></option>
