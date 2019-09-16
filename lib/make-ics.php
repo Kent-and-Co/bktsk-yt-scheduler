@@ -31,30 +31,19 @@ BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
 PRODID:-//BKTSK YouTube Live Scheduler for WordPress//Manually//EN
 VERSION:2.0
-BEGIN:VTIMEZONE
-TZID:Japan
-BEGIN:STANDARD
-DTSTART:19390101T000000
-TZOFFSETFROM:+0900
-TZOFFSETTO:+0900
-TZNAME:JST
-END:STANDARD
-END:VTIMEZONE
-BEGIN:VEVENT
-UID:com.bktsk.sasapiyogames.1
-DTSTAMP:20190915T000000Z
-SUMMARY:サーモンラン
-DESCRIPTION:テスト用
-DTSTART;VALUE=DATE:20190915;
-DTEND;VALUE=DATE:20190916;
-TRANSP:TRANSPARENT
-PRIORITY:0
-CLASS:PUBLIC
-END:VEVENT
+X-WR-CALNAME:配信カレンダー
+X-WR-CALDESC:配信カレンダーテスト
+EOF;
+
+		$bktsk_yt_live_calendar .= "\n" . bktsk_yt_live_make_events_ics();
+
+		$bktsk_yt_live_calendar .= <<<EOF
+
 END:VCALENDAR
 EOF;
 
-		echo preg_replace( "/\r\n|\r|\n/", "\r\n", $bktsk_yt_live_calendar );
+		$bktsk_tmp = preg_replace( "/\r\n|\r|\n/", "\r\n", $bktsk_yt_live_calendar );
+		echo preg_replace( "/\r\n\r\n/", "\r\n", $bktsk_tmp );
 		exit;
 	}
 

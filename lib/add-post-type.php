@@ -227,7 +227,7 @@ function bktsk_yt_scheduler_meta_html() {
 			}
 
 		// change Type
-		$('#bktsk_yt_type').change(function() {
+		$('#bktsk_yt_live_type').change(function() {
 			var bktsk_yt_type = $(this).val();
 
 			switch (bktsk_yt_type) {
@@ -264,28 +264,28 @@ function bktsk_yt_scheduler_meta_html() {
 		<tr>
 			<th><?php _e( 'Live Schedule', 'BktskYtScheduler' ); ?></th>
 			<td id="bktsk_yt_live">
-				<input type="text" class="date start" name="bktsk_yt_live_start_date"
+				<input type="text" class="date start" name="bktsk_yt_live_start_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_live_start_date ) ) {
 					echo ' value="' . $bktsk_yt_live_start_date . '"';
 				}
 				?>
 				>
-				<input type="text" class="time start" name="bktsk_yt_live_start_time"
+				<input type="text" class="time start" name="bktsk_yt_live_start_time" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_live_start_time ) ) {
 					echo ' value="' . $bktsk_yt_live_start_time . '"';
 				}
 				?>
 				> <?php _e( 'to', 'BktskYtScheduler' ); ?>
-				<input type="text" class="date end" name="bktsk_yt_live_end_date"
+				<input type="text" class="date end" name="bktsk_yt_live_end_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_live_end_date ) ) {
 					echo ' value="' . $bktsk_yt_live_end_date . '"';
 				}
 				?>
 				>
-				<input type="text" class="time end" name="bktsk_yt_live_end_time"
+				<input type="text" class="time end" name="bktsk_yt_live_end_time" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_live_end_time ) ) {
 					echo ' value="' . $bktsk_yt_live_end_time . '"';
@@ -301,14 +301,14 @@ function bktsk_yt_scheduler_meta_html() {
 		<tr>
 			<th><?php _e( 'Live Date', 'BktskYtScheduler' ); ?></th>
 			<td id="bktsk_yt_all_day_live">
-				<input type="text" class="date start" name="bktsk_yt_all_day_live_start_date"
+				<input type="text" class="date start" name="bktsk_yt_all_day_live_start_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_all_day_live_start_date ) ) {
 					echo ' value="' . $bktsk_yt_all_day_live_start_date . '"';
 				}
 				?>
 				> <?php _e( 'to', 'BktskYtScheduler' ); ?>
-				<input type="text" class="date end" name="bktsk_yt_all_day_live_end_date"
+				<input type="text" class="date end" name="bktsk_yt_all_day_live_end_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_all_day_live_end_date ) ) {
 					echo ' value="' . $bktsk_yt_all_day_live_end_date . '"';
@@ -324,14 +324,14 @@ function bktsk_yt_scheduler_meta_html() {
 		<tr>
 			<th><?php _e( 'Date of Day Off', 'BktskYtScheduler' ); ?></th>
 			<td id="bktsk_yt_day_off">
-				<input type="text" class="date start" name="bktsk_yt_day_off_start_date"
+				<input type="text" class="date start" name="bktsk_yt_day_off_start_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_day_off_start_date ) ) {
 					echo ' value="' . $bktsk_yt_day_off_start_date . '"';
 				}
 				?>
 				> <?php _e( 'to', 'BktskYtScheduler' ); ?>
-				<input type="text" class="date end" name="bktsk_yt_day_off_end_date"
+				<input type="text" class="date end" name="bktsk_yt_day_off_end_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_day_off_end_date ) ) {
 					echo ' value="' . $bktsk_yt_day_off_end_date . '"';
@@ -396,17 +396,21 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 			if ( isset( $_POST['bktsk_yt_live_start_date'] ) && isset( $_POST['bktsk_yt_live_start_time'] ) ) {
 				$bktsk_yt_live_start_update = new DateTime( $_POST['bktsk_yt_live_start_date'] . 'T' . $_POST['bktsk_yt_live_start_time'], new DateTimeZone( $wp_timezone ) );
 				$bktsk_yt_live_start_update->setTimezone( new DateTimeZone( 'UTC' ) );
-				update_post_meta( $post_id, 'bktsk_yt_live_start', $bktsk_yt_live_start_update->format( DateTime::ISO8601 ) ); //値を保存
-			} else { //題名未入力の場合
-				delete_post_meta( $post_id, 'bktsk_yt_live_start' ); //値を削除
+				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_start', $bktsk_yt_live_start_update->format( 'Y-m-d H:i:s' ) );
+				update_post_meta( $post_id, 'bktsk_yt_live_start', $bktsk_yt_live_start_update->format( DateTime::ISO8601 ) );
+			} else {
+				delete_post_meta( $post_id, 'bktsk_yt_live_frontpage_start' );
+				delete_post_meta( $post_id, 'bktsk_yt_live_start' );
 			}
 
 			if ( isset( $_POST['bktsk_yt_live_end_date'] ) && isset( $_POST['bktsk_yt_live_end_time'] ) ) {
 				$bktsk_yt_live_end_update = new DateTime( $_POST['bktsk_yt_live_end_date'] . 'T' . $_POST['bktsk_yt_live_end_time'], new DateTimeZone( $wp_timezone ) );
+				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_due', $bktsk_yt_live_end_update->format( 'Y-m-d H:i:s' ) );
 				$bktsk_yt_live_end_update->setTimezone( new DateTimeZone( 'UTC' ) );
-				update_post_meta( $post_id, 'bktsk_yt_live_end', $bktsk_yt_live_end_update->format( DateTime::ISO8601 ) ); //値を保存
-			} else { //題名未入力の場合
-				delete_post_meta( $post_id, 'bktsk_yt_live_end' ); //値を削除
+				update_post_meta( $post_id, 'bktsk_yt_live_end', $bktsk_yt_live_end_update->format( DateTime::ISO8601 ) );
+			} else {
+				delete_post_meta( $post_id, 'bktsk_yt_live_frontpage_due' );
+				delete_post_meta( $post_id, 'bktsk_yt_live_end' );
 			}
 
 			delete_post_meta( $post_id, 'bktsk_yt_all_day_live_start' );
@@ -418,16 +422,20 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 		case 'all_day_live_schedule':
 			if ( isset( $_POST['bktsk_yt_all_day_live_start_date'] ) ) {
 				$bktsk_yt_all_day_live_start_update = new DateTime( $_POST['bktsk_yt_all_day_live_start_date'], new DateTimeZone( $wp_timezone ) );
-				update_post_meta( $post_id, 'bktsk_yt_all_day_live_start', $bktsk_yt_all_day_live_start_update->format( 'Y-m-d' ) ); //値を保存
-			} else { //題名未入力の場合
-				delete_post_meta( $post_id, 'bktsk_yt_all_day_live_start' ); //値を削除
+				update_post_meta( $post_id, 'bktsk_yt_all_day_live_start', $bktsk_yt_all_day_live_start_update->format( 'Y-m-d' ) );
+				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_start', $bktsk_yt_all_day_live_start_update->format( 'Y-m-d H:i:s' ) );
+			} else {
+				delete_post_meta( $post_id, 'bktsk_yt_live_frontpage_start' );
+				delete_post_meta( $post_id, 'bktsk_yt_all_day_live_start' );
 			}
 
 			if ( isset( $_POST['bktsk_yt_all_day_live_end_date'] ) ) {
 				$bktsk_yt_all_day_live_end_update = new DateTime( $_POST['bktsk_yt_all_day_live_end_date'], new DateTimeZone( $wp_timezone ) );
-				update_post_meta( $post_id, 'bktsk_yt_all_day_live_end', $bktsk_yt_all_day_live_end_update->format( 'Y-m-d' ) ); //値を保存
+				update_post_meta( $post_id, 'bktsk_yt_all_day_live_end', $bktsk_yt_all_day_live_end_update->format( 'Y-m-d' ) );
+				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_due', $bktsk_yt_all_day_live_end_update->modify( '+1 day' )->format( 'Y-m-d H:i:s' ) );
 			} else { //題名未入力の場合
-				delete_post_meta( $post_id, 'bktsk_yt_all_day_live_end' ); //値を削除
+				delete_post_meta( $post_id, 'bktsk_yt_live_frontpage_due' );
+				delete_post_meta( $post_id, 'bktsk_yt_all_day_live_end' );
 			}
 
 			delete_post_meta( $post_id, 'bktsk_yt_live_start' );
@@ -440,15 +448,19 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 			if ( isset( $_POST['bktsk_yt_day_off_start_date'] ) ) {
 				$bktsk_yt_day_off_start_update = new DateTime( $_POST['bktsk_yt_day_off_start_date'], new DateTimeZone( $wp_timezone ) );
 				update_post_meta( $post_id, 'bktsk_yt_day_off_start', $bktsk_yt_day_off_start_update->format( 'Y-m-d' ) ); //値を保存
-			} else { //題名未入力の場合
-				delete_post_meta( $post_id, 'bktsk_yt_day_off_start' ); //値を削除
+				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_start', $bktsk_yt_day_off_start_update->format( 'Y-m-d H:i:s' ) );
+			} else {
+				delete_post_meta( $post_id, 'bktsk_yt_live_frontpage_start' );
+				delete_post_meta( $post_id, 'bktsk_yt_day_off_start' );
 			}
 
 			if ( isset( $_POST['bktsk_yt_day_off_end_date'] ) ) {
 				$bktsk_yt_day_off_end_update = new DateTime( $_POST['bktsk_yt_day_off_end_date'], new DateTimeZone( $wp_timezone ) );
 				update_post_meta( $post_id, 'bktsk_yt_day_off_end', $bktsk_yt_day_off_end_update->format( 'Y-m-d' ) ); //値を保存
-			} else { //題名未入力の場合
-				delete_post_meta( $post_id, 'bktsk_yt_day_off_end' ); //値を削除
+				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_due', $bktsk_yt_day_off_end_update->modify( '+1 day' )->format( 'Y-m-d H:i:s' ) );
+			} else {
+				delete_post_meta( $post_id, 'bktsk_yt_live_frontpage_end' );
+				delete_post_meta( $post_id, 'bktsk_yt_day_off_end' );
 			}
 
 			delete_post_meta( $post_id, 'bktsk_yt_live_start_date' );
@@ -458,3 +470,51 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 			break;
 	}
 }
+
+// add columns on the edit.php
+
+function bktsk_yt_live_admin_add_columns( $bktsk_yt_live_defaults ) {
+	$bktsk_yt_live_defaults['bktsk_yt_live_start'] = __( 'Live Start', 'BktskYtScheduler' ); // ID と 表示させるラベル
+	$bktsk_yt_live_defaults['bktsk_yt_live_end']   = __( 'Live End', 'BktskYtScheduler' );
+	return $bktsk_yt_live_defaults;
+}
+add_filter( 'manage_bktskytlive_posts_columns', 'bktsk_yt_live_admin_add_columns' );
+
+function bktsk_yt_live_admin_custom_column( $bktsk_yt_live_column, $post_id ) {
+	$wp_timezone = get_option( 'timezone_string' );
+	switch ( $bktsk_yt_live_column ) {
+		case 'bktsk_yt_live_start': // ID
+			if ( null != get_post_meta( $post_id, 'bktsk_yt_live_start', true ) ) {
+				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_live_start', true );
+			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_all_day_live_start', true ) ) {
+				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_all_day_live_start', true );
+			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_day_off_start', true ) ) {
+				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_day_off_start', true );
+			}
+			break;
+
+		case 'bktsk_yt_live_end':
+			if ( null != get_post_meta( $post_id, 'bktsk_yt_live_end', true ) ) {
+				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_live_end', true );
+			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_all_day_live_end', true ) ) {
+				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_all_day_live_end', true );
+			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_day_off_end', true ) ) {
+				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_day_off_end', true );
+			}
+			break;
+	}
+
+	if ( $bktsk_yt_live_post_meta ) {
+		if ( 'live_schedule' === get_post_meta( $post_id, 'bktsk_yt_live_type', true ) ) {
+			$bktsk_yt_live_time_format = 'Y-m-d H:i';
+		} else {
+			$bktsk_yt_live_time_format = 'Y-m-d';
+		}
+		$bktsk_yt_live_post_meta = new DateTime( $bktsk_yt_live_post_meta, new DateTimeZone( 'UTC' ) );
+		$bktsk_yt_live_post_meta->setTimezone( new DateTimeZone( $wp_timezone ) );
+		echo $bktsk_yt_live_post_meta->format( $bktsk_yt_live_time_format ) . '<br>(' . $wp_timezone . ')';
+	} else {
+		echo 'none';
+	}
+}
+add_action( 'manage_posts_custom_column', 'bktsk_yt_live_admin_custom_column', 10, 2 );
