@@ -1,4 +1,7 @@
 <?php
+
+// add url route for ics
+
 add_filter( 'query_vars', 'bktsk_yt_scheduler_ics_query_vars' );
 add_action( 'init', 'bktsk_yt_scheduler_ics_urls' );
 
@@ -14,6 +17,8 @@ function bktsk_yt_scheduler_ics_urls() {
 		'top'
 	);
 }
+
+// add response for ics
 
 add_action( 'parse_request', 'bktsk_yt_scheduler_ics_requests' );
 
