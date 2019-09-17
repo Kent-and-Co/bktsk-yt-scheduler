@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: BKTSK YouTube Scheduler\n"
-"POT-Creation-Date: 2019-09-17 22:49+0900\n"
-"PO-Revision-Date: 2019-09-17 22:48+0900\n"
+"POT-Creation-Date: 2019-09-18 03:41+0900\n"
+"PO-Revision-Date: 2019-09-18 03:38+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,146 +21,233 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: lib/add-post-type.php:9
+#: lib/add-post-type.php:16
 msgctxt "post type general name"
 msgid "YouTube Live Schedules"
 msgstr ""
 
-#: lib/add-post-type.php:10
+#: lib/add-post-type.php:17
 msgctxt "post type singular name"
 msgid "YouTube Live Schedule"
 msgstr ""
 
-#: lib/add-post-type.php:11
+#: lib/add-post-type.php:18
 msgctxt "admin menu"
 msgid "YT Live"
 msgstr ""
 
-#: lib/add-post-type.php:12
+#: lib/add-post-type.php:19
 msgctxt "add new on admin bar"
 msgid "YT Live"
 msgstr ""
 
-#: lib/add-post-type.php:13
+#: lib/add-post-type.php:20
 msgctxt "Live"
 msgid "Add New"
 msgstr ""
 
-#: lib/add-post-type.php:14
+#: lib/add-post-type.php:21
 msgid "Add New Live"
 msgstr ""
 
-#: lib/add-post-type.php:15
+#: lib/add-post-type.php:22
 msgid "New Live"
 msgstr ""
 
-#: lib/add-post-type.php:16
+#: lib/add-post-type.php:23
 msgid "Edit Live"
 msgstr ""
 
-#: lib/add-post-type.php:17
+#: lib/add-post-type.php:24
 msgid "View Live"
 msgstr ""
 
-#: lib/add-post-type.php:18
+#: lib/add-post-type.php:25
 msgid "All Live Schedules"
 msgstr ""
 
-#: lib/add-post-type.php:19
+#: lib/add-post-type.php:26
 msgid "Search Live Schedules"
 msgstr ""
 
-#: lib/add-post-type.php:20
+#: lib/add-post-type.php:27
 msgid "Parent Lives:"
 msgstr ""
 
-#: lib/add-post-type.php:21
+#: lib/add-post-type.php:28
 msgid "No Live found."
 msgstr ""
 
-#: lib/add-post-type.php:22
+#: lib/add-post-type.php:29
 msgid "No Live found in Trash."
 msgstr ""
 
-#: lib/add-post-type.php:58
+#: lib/add-post-type.php:65
 msgid "Live Date/Time"
 msgstr ""
 
-#: lib/add-post-type.php:245
+#: lib/add-post-type.php:252
 msgid "Live Schedule (time fixed)"
 msgstr ""
 
-#: lib/add-post-type.php:246
+#: lib/add-post-type.php:253
 msgid "Canceled Live Schedule (time fixed)"
 msgstr ""
 
-#: lib/add-post-type.php:247
+#: lib/add-post-type.php:254
 msgid "Live Date (time not fixed)"
 msgstr ""
 
-#: lib/add-post-type.php:248
+#: lib/add-post-type.php:255
 msgid "Canceled Live Date (time not fixed)"
 msgstr ""
 
-#: lib/add-post-type.php:249
+#: lib/add-post-type.php:256
 msgid "Live Day Off (decided not to live)"
 msgstr ""
 
-#: lib/add-post-type.php:255
+#: lib/add-post-type.php:262
 msgid "Live Schedule"
 msgstr ""
 
-#: lib/add-post-type.php:270 lib/add-post-type.php:300
-#: lib/add-post-type.php:323
+#: lib/add-post-type.php:277 lib/add-post-type.php:307
+#: lib/add-post-type.php:330
 msgid "to"
 msgstr ""
 
-#: lib/add-post-type.php:292
+#: lib/add-post-type.php:299
 msgid "Live Date"
 msgstr ""
 
-#: lib/add-post-type.php:315
+#: lib/add-post-type.php:322
 msgid "Date of Day Off"
 msgstr ""
 
-#: lib/add-post-type.php:337
+#: lib/add-post-type.php:344
 msgid "TimeZone"
 msgstr ""
 
-#: lib/add-post-type.php:338
+#: lib/add-post-type.php:345
 msgid "This can be changed at settings page from dashboard."
 msgstr ""
 
-#: lib/add-post-type.php:469
+#: lib/add-post-type.php:476
 msgid "Live Start"
 msgstr ""
 
-#: lib/add-post-type.php:470
+#: lib/add-post-type.php:477
 msgid "Live End"
 msgstr ""
 
-#: lib/add-taxonomy.php:9
+#: lib/add-taxonomy.php:16
 msgid "Live Categories"
 msgstr ""
 
-#: lib/add-taxonomy.php:10
+#: lib/add-taxonomy.php:17
 msgid "Live Category"
 msgstr ""
 
-#: lib/add-taxonomy.php:12
+#: lib/add-taxonomy.php:19
 msgid "All live categories"
 msgstr ""
 
-#: lib/add-taxonomy.php:13
+#: lib/add-taxonomy.php:20
 msgid "Add new live category"
 msgstr ""
 
-#: lib/admin-menu.php:8 lib/admin-menu.php:19
+#: lib/class-bktskytscheduleradminpage.php:23
+#: lib/class-bktskytscheduleradminpage.php:40
 msgid "YouTube Live Scheduler Settings"
 msgstr ""
 
-#: lib/admin-menu.php:9
+#: lib/class-bktskytscheduleradminpage.php:24
 msgid "YT Live Settings"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:66
+msgid "Slugs"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:74
+msgid "Live post slug"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:83
+msgid "Live category slug"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:93
+msgid "Live iCalendar slug"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:102
+msgid "iCalendar Info"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:110
+msgid "iCalendar title"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:119
+msgid "iCalendar Description"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:128
+msgid "iCalendar Tags"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:136
+msgid "Canceled"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:145
+msgid "Time not fixed"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:154
+msgid "Day off"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:206
+msgid ""
+"Fields of this section will be used for URL slugs. All fields will be "
+"urlencoded."
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:208
+msgid "After changing this section, permalink update is strongly recommended"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:220
+msgid ""
+"This will be used for post type slug of the lives. \"live_schedule\" is the "
+"default. (When this field is empty.)"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:233
+msgid ""
+"This will be used for taxonomy slug of the lives. \"live_category\" is the "
+"default. (When this field is empty.)"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:246
+msgid ""
+"This will be used for iCalendar URL slug. \"bktsk_yt_live\" is the default. "
+"(When this field is empty.)"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:254
+msgid "Fields of this section will be used on the iCalendar."
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:281
+msgid ""
+"Fields of this section will be used just before title (VEVENT/SUMMARY) on "
+"the iCalendar."
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:283
+msgid "When none given, nothing will be added."
 msgstr ""
 
 #. Plugin Name of the plugin/theme

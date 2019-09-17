@@ -71,7 +71,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for post type slug
 		add_settings_field(
 			'posttype_slug', // ID
-			'Live post slug', // Title
+			__( 'Live post slug', 'BktskYtScheduler' ), // Title
 			array( $this, 'posttype_slug_callback' ), // Callback
 			'bktsk-yt-scheduler-admin', // Page
 			'bktsk-yt-scheduler-slugs' // Section
@@ -80,7 +80,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for taxonomy slug
 		add_settings_field(
 			'taxonomy_slug',
-			'Live category slug',
+			__( 'Live category slug', 'BktskYtScheduler' ),
 			array( $this, 'taxonomy_slug_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-slugs'
@@ -89,7 +89,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for iCalendar URL slug
 		add_settings_field(
 			'ical_slug',
-			'Live iCalendar slug',
+			__( 'Live iCalendar slug', 'BktskYtScheduler' ),
 			array( $this, 'ical_slug_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-slugs'
@@ -106,7 +106,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for name of iCalendar
 		add_settings_field(
 			'ical_title', // ID
-			'iCalendar title', // Title
+			__( 'iCalendar title', 'BktskYtScheduler' ), // Title
 			array( $this, 'title_info_callback' ), // Callback
 			'bktsk-yt-scheduler-admin', // Page
 			'bktsk-yt-scheduler-ical-info' // Section
@@ -115,7 +115,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for description of iCalendar
 		add_settings_field(
 			'ical_desc',
-			'iCalendar Description',
+			__( 'iCalendar Description', 'BktskYtScheduler' ),
 			array( $this, 'desc_info_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-ical-info'
@@ -132,7 +132,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for tag of canceled events
 		add_settings_field(
 			'canceled_tag', // ID
-			'Canceled', // Title
+			__( 'Canceled', 'BktskYtScheduler' ), // Title
 			array( $this, 'canceled_tag_callback' ), // Callback
 			'bktsk-yt-scheduler-admin', // Page
 			'bktsk-yt-scheduler-ical-tags' // Section
@@ -141,7 +141,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for tag of time not fixed events
 		add_settings_field(
 			'notfixed_tag',
-			'Time not fixed',
+			__( 'Time not fixed', 'BktskYtScheduler' ),
 			array( $this, 'notfixed_tag_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-ical-tags'
@@ -150,7 +150,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for tag of day off events
 		add_settings_field(
 			'dayoff_tag',
-			'Day off',
+			__( 'Day off', 'BktskYtScheduler' ),
 			array( $this, 'dayoff_tag_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-ical-tags'
