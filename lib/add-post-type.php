@@ -82,8 +82,6 @@ function bktsk_yt_scheduler_meta_html() {
 		$live_start = new DateTime( $bktsk_yt_scheduler_custom['bktsk_yt_live_start'][0], new DateTimeZone( 'UTC' ) );
 
 		$live_start->setTimezone( new DateTimeZone( $wp_timezone ) );
-
-		//開始時間
 		$bktsk_yt_live_start_date = $live_start->format( 'Y-m-d' );
 		$bktsk_yt_live_start_time = $live_start->format( 'H:i' );
 	}
@@ -93,7 +91,6 @@ function bktsk_yt_scheduler_meta_html() {
 
 		$live_end->setTimezone( new DateTimeZone( $wp_timezone ) );
 
-		//開始時間
 		$bktsk_yt_live_end_date = $live_end->format( 'Y-m-d' );
 		$bktsk_yt_live_end_time = $live_end->format( 'H:i' );
 	}
@@ -101,29 +98,29 @@ function bktsk_yt_scheduler_meta_html() {
 	if ( ! empty( $bktsk_yt_scheduler_custom['bktsk_yt_all_day_live_start'] ) ) {
 		$all_day_live_start = new DateTime( $bktsk_yt_scheduler_custom['bktsk_yt_all_day_live_start'][0] );
 
-		//開始時間
 		$bktsk_yt_all_day_live_start_date = $all_day_live_start->format( 'Y-m-d' );
 	}
 
 	if ( ! empty( $bktsk_yt_scheduler_custom['bktsk_yt_all_day_live_end'] ) ) {
 		$all_day_live_end = new DateTime( $bktsk_yt_scheduler_custom['bktsk_yt_all_day_live_end'][0] );
 
-		//開始時間
 		$bktsk_yt_all_day_live_end_date = $all_day_live_end->format( 'Y-m-d' );
 	}
 
 	if ( ! empty( $bktsk_yt_scheduler_custom['bktsk_yt_day_off_start'] ) ) {
 		$day_off_start = new DateTime( $bktsk_yt_scheduler_custom['bktsk_yt_day_off_start'][0] );
 
-		//開始時間
 		$bktsk_yt_day_off_start_date = $day_off_start->format( 'Y-m-d' );
 	}
 
 	if ( ! empty( $bktsk_yt_scheduler_custom['bktsk_yt_day_off_end'] ) ) {
 		$day_off_end = new DateTime( $bktsk_yt_scheduler_custom['bktsk_yt_day_off_end'][0] );
 
-		//開始時間
 		$bktsk_yt_day_off_end_date = $day_off_end->format( 'Y-m-d' );
+	}
+
+	if ( ! empty( $bktsk_yt_scheduler_custom['bktsk_yt_live_url'] ) ) {
+		$bktsk_yt_live_url = $bktsk_yt_scheduler_custom['bktsk_yt_live_url'][0];
 	}
 
 	$timezone = new DateTime( null, new DateTimeZone( $wp_timezone ) );
@@ -345,6 +342,20 @@ function bktsk_yt_scheduler_meta_html() {
 			<td><?php echo $timezone->format( 'e (P)' ); ?> <span class="bktsk_yt_live_notice">* <?php _e( 'This can be changed at settings page from dashboard.', 'BktskYtScheduler' ); ?></span></td>
 		</tr>
 	</table>
+
+	<table>
+		<tr>
+			<th><?php _e( 'URL', 'BktskYtScheduler' ); ?></th>
+			<td><input type="text" class="url" name="bktsk_yt_live_url" autocomplete="off"
+			<?php
+			if ( isset( $bktsk_yt_live_url ) ) {
+				echo ' value="' . $bktsk_yt_live_url . '"';
+			}
+			?>
+			></td>
+		</tr>
+	</table>
+
 </div>
 	<?php
 }
@@ -387,6 +398,13 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 
 	$bktsk_yt_live_type = $_POST['bktsk_yt_live_type'];
 	update_post_meta( $post_id, 'bktsk_yt_live_type', $bktsk_yt_live_type );
+
+	$bktsk_yt_live_url = $_POST['bktsk_yt_live_url'];
+	if ( ! empty( $bktsk_yt_live_url ) ) {
+		update_post_meta( $post_id, 'bktsk_yt_live_url', $bktsk_yt_live_url );
+	} else {
+		delete_post_meta( $post_id, 'bktsk_yt_live_url' );
+	}
 
 	switch ( $bktsk_yt_live_type ) {
 		case 'live_schedule':
