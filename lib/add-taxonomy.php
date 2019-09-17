@@ -2,6 +2,13 @@
 
 function bktsk_yt_live_add_taxonomy() {
 
+	$bktsk_yt_live_options       = get_option( 'bktsk_yt_scheduler_options' );
+	$bktsk_yt_live_taxonomy_slug = $bktsk_yt_live_options['taxonomy_slug'];
+
+	if ( empty( $bktsk_yt_live_taxonomy_slug ) ) {
+		$bktsk_yt_live_taxonomy_slug = 'live_category';
+	}
+
 	register_taxonomy(
 		'bktsk-yt-live-taxonomy',
 		'bktskytlive',
@@ -17,7 +24,7 @@ function bktsk_yt_live_add_taxonomy() {
 			'show_in_nav_menus' => true,
 			'hierarchical'      => true,
 			'rewrite'           => array(
-				'slug' => 'live_category',
+				'slug' => $bktsk_yt_live_taxonomy_slug,
 			),
 		)
 	);

@@ -44,12 +44,17 @@ function bktsk_yt_live_make_events_ics( $args = array() ) {
 
 			$bktsk_live_type = get_post_meta( $bktsk_live_id, 'bktsk_yt_live_type', true );
 
+			$bktsk_yt_live_options   = get_option( 'bktsk_yt_scheduler_options' );
+			$bktsk_live_canceled_tag = $bktsk_yt_live_options['canceled_tag'];
+			$bktsk_live_notfixed_tag = $bktsk_yt_live_options['notfixed_tag'];
+			$bktsk_live_dayoff_tag   = $bktsk_yt_live_options['dayoff_tag'];
+
 			switch ( $bktsk_live_type ) {
 
 				case 'live_schedule':
 				case 'canceled_live_schedule':
 					if ( 'canceled_live_schedule' === $bktsk_live_type ) {
-						$bktsk_live_title = '[Canceled]' . $bktsk_live_title;
+						$bktsk_live_title = $bktsk_live_canceled_tag . $bktsk_live_title;
 					}
 					$bktsk_live_start_meta     = get_post_meta( $bktsk_live_id, 'bktsk_yt_live_start', true );
 					$bktsk_live_start_datetime = new DateTime( $bktsk_live_start_meta, new DateTimeZone( 'UTC' ) );
@@ -65,9 +70,9 @@ function bktsk_yt_live_make_events_ics( $args = array() ) {
 				case 'all_day_live_schedule':
 				case 'canceled_all_day_live_schedule':
 					if ( 'canceled_all_day_live_schedule' === $bktsk_live_type ) {
-						$bktsk_live_title = '[Canceled]' . $bktsk_live_title;
+						$bktsk_live_title = $bktsk_live_canceled_tag . $bktsk_live_title;
 					} else {
-						$bktsk_live_title = '[Time not fixed]' . $bktsk_live_title;
+						$bktsk_live_title = $bktsk_live_notfixed_tag . $bktsk_live_title;
 					}
 					$bktsk_live_start_meta     = get_post_meta( $bktsk_live_id, 'bktsk_yt_all_day_live_start', true );
 					$bktsk_live_start_datetime = new DateTime( $bktsk_live_start_meta, new DateTimeZone( 'UTC' ) );
@@ -81,7 +86,7 @@ function bktsk_yt_live_make_events_ics( $args = array() ) {
 					break;
 
 				case 'day_off':
-					$bktsk_live_title          = '[Day Off]' . $bktsk_live_title;
+					$bktsk_live_title          = $bktsk_live_dayoff_tag . $bktsk_live_title;
 					$bktsk_live_start_meta     = get_post_meta( $bktsk_live_id, 'bktsk_yt_day_off_start', true );
 					$bktsk_live_start_datetime = new DateTime( $bktsk_live_start_meta, new DateTimeZone( 'UTC' ) );
 					$bktsk_live_start_format   = $bktsk_live_start_datetime->format( 'Ymd' );

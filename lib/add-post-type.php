@@ -5,6 +5,13 @@
 add_action( 'init', 'bktsk_yt_scheduler_post_type_init' );
 
 function bktsk_yt_scheduler_post_type_init() {
+	$bktsk_yt_live_options       = get_option( 'bktsk_yt_scheduler_options' );
+	$bktsk_yt_live_posttype_slug = $bktsk_yt_live_options['posttype_slug'];
+
+	if ( empty( $bktsk_yt_live_posttype_slug ) ) {
+		$bktsk_yt_live_posttype_slug = 'live_schedule';
+	}
+
 	$labels = array(
 		'name'               => _x( 'YouTube Live Schedules', 'post type general name', 'BktskYtScheduler' ),
 		'singular_name'      => _x( 'YouTube Live Schedule', 'post type singular name', 'BktskYtScheduler' ),
@@ -29,7 +36,7 @@ function bktsk_yt_scheduler_post_type_init() {
 		'show_ui'            => true,
 		'show_in_menu'       => true,
 		'query_var'          => true,
-		'rewrite'            => array( 'slug' => 'live_schedule' ),
+		'rewrite'            => array( 'slug' => $bktsk_yt_live_posttype_slug ),
 		'capability_type'    => 'post',
 		'has_archive'        => true,
 		'hierarchical'       => false,
