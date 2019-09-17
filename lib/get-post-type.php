@@ -99,7 +99,10 @@ function bktsk_yt_live_make_events_ics( $args = array() ) {
 					break;
 			}
 
-			$bktsk_live_url = get_the_permalink();
+			$bktsk_live_url = get_post_meta( $bktsk_live_id, 'bktsk_yt_live_url', true );
+			if ( empty( $bktsk_live_url ) ) {
+				$bktsk_live_url = get_the_permalink();
+			}
 
 			$bktsk_live_uid = $bktsk_live_id . '@' . parse_url( get_bloginfo( 'url' ), PHP_URL_HOST );
 
