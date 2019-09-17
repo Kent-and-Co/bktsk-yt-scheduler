@@ -3,7 +3,7 @@
 function bktsk_yt_live_add_taxonomy() {
 
 	register_taxonomy(
-		'bktak-yt-live-taxonomy',
+		'bktsk-yt-live-taxonomy',
 		'bktskytlive',
 		array(
 			'label'             => __( 'Live Categories', 'BktskYtScheduler' ),

@@ -206,38 +206,26 @@ function bktsk_yt_scheduler_meta_html() {
 
 		$('#bktsk_yt_live_type').val("<?php echo $bktsk_yt_live_type; ?>");
 
-			switch ("<?php echo $bktsk_yt_live_type; ?>") {
-				case 'live_schedule':
-					$('#bktsk_yt_live_schedule').show();
-					$('#bktsk_yt_all_day_live_schedule').hide();
-					$('#bktsk_yt_day_off_schedule').hide();
-					break;
-
-				case 'all_day_live_schedule':
-					$('#bktsk_yt_live_schedule').hide();
-					$('#bktsk_yt_all_day_live_schedule').show();
-					$('#bktsk_yt_day_off_schedule').hide();
-					break;
-
-				case 'day_off':
-					$('#bktsk_yt_live_schedule').hide();
-					$('#bktsk_yt_all_day_live_schedule').hide();
-					$('#bktsk_yt_day_off_schedule').show();
-					break;
-			}
+		bktsk_yt_live_meta_selector ("<?php echo $bktsk_yt_live_type; ?>");
 
 		// change Type
 		$('#bktsk_yt_live_type').change(function() {
 			var bktsk_yt_type = $(this).val();
+			bktsk_yt_live_meta_selector(bktsk_yt_type);
+		});
 
-			switch (bktsk_yt_type) {
+		// function to change select elements
+		function bktsk_yt_live_meta_selector (bktsk_yt_live_type) {
+			switch (bktsk_yt_live_type) {
 				case 'live_schedule':
+				case 'canceled_live_schedule':
 					$('#bktsk_yt_live_schedule').show();
 					$('#bktsk_yt_all_day_live_schedule').hide();
 					$('#bktsk_yt_day_off_schedule').hide();
 					break;
 
-				case 'all_day_live_schedule':
+					case 'all_day_live_schedule':
+					case 'canceled_all_day_live_schedule':
 					$('#bktsk_yt_live_schedule').hide();
 					$('#bktsk_yt_all_day_live_schedule').show();
 					$('#bktsk_yt_day_off_schedule').hide();
@@ -249,13 +237,15 @@ function bktsk_yt_scheduler_meta_html() {
 					$('#bktsk_yt_day_off_schedule').show();
 					break;
 			}
-		});
+		}
 	});
 	</script>
 	<div id="live-time">
 	<select id='bktsk_yt_live_type' name="bktsk_yt_live_type">
 		<option value="live_schedule"><?php _e( 'Live Schedule (time fixed)', 'BktskYtScheduler' ); ?></option>
+		<option value="canceled_live_schedule"><?php _e( 'Canceled Live Schedule (time fixed)', 'BktskYtScheduler' ); ?></option>
 		<option value="all_day_live_schedule"><?php _e( 'Live Date (time not fixed)', 'BktskYtScheduler' ); ?></option>
+		<option value="canceled_all_day_live_schedule"><?php _e( 'Canceled Live Date (time not fixed)', 'BktskYtScheduler' ); ?></option>
 		<option value="day_off"><?php _e( 'Live Day Off (decided not to live)', 'BktskYtScheduler' ); ?></option>
 	</select>
 
@@ -393,6 +383,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 
 	switch ( $bktsk_yt_live_type ) {
 		case 'live_schedule':
+		case 'canceled_live_schedule':
 			if ( isset( $_POST['bktsk_yt_live_start_date'] ) && isset( $_POST['bktsk_yt_live_start_time'] ) ) {
 				$bktsk_yt_live_start_update = new DateTime( $_POST['bktsk_yt_live_start_date'] . 'T' . $_POST['bktsk_yt_live_start_time'], new DateTimeZone( $wp_timezone ) );
 				$bktsk_yt_live_start_update->setTimezone( new DateTimeZone( 'UTC' ) );
@@ -420,6 +411,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 			break;
 
 		case 'all_day_live_schedule':
+		case 'canceled_all_day_live_schedule':
 			if ( isset( $_POST['bktsk_yt_all_day_live_start_date'] ) ) {
 				$bktsk_yt_all_day_live_start_update = new DateTime( $_POST['bktsk_yt_all_day_live_start_date'], new DateTimeZone( $wp_timezone ) );
 				update_post_meta( $post_id, 'bktsk_yt_all_day_live_start', $bktsk_yt_all_day_live_start_update->format( 'Y-m-d' ) );

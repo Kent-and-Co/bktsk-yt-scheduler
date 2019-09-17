@@ -8,7 +8,7 @@ Author: SASAGAWA Kiyoshi
 Author URI: https://kent-and-co.com
 License: GPL v2 or later
 Text Domain: BktskYtScheduler
-Domain Path: /languages
+Domain Path: /languages/
 
 Copyright 2019 SASAGAWA Kiyoshi (email : sasagawa@kent-and-co.com)
 

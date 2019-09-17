@@ -46,10 +46,14 @@ function bktsk_yt_live_make_events_ics( $args = array() ) {
 			switch ( $bktsk_live_type ) {
 
 				case 'live_schedule':
-					$bktsk_live_start_meta     = get_post_meta( $bktsk_live_id, 'bktsk_yt_live_start', true );
-					$bktsk_live_start_datetime = new DateTime( $bktsk_live_start_meta, new DateTimeZone( 'UTC' ) );
-					$bktsk_live_start_format   = $bktsk_live_start_datetime->format( 'Ymd\THis\Z' );
-					$bktsk_live_start          = 'DTSTART:' . $bktsk_live_start_format;
+				case 'canceled_live_schedule':
+					if ( 'canceled_live_schedule' === $bktsk_live_type ) {
+						$bktsk_live_title = '[' . __( 'Canceled', 'BktskYtScheduler' ) . ']' . $bktsk_live_title;
+					}
+									$bktsk_live_start_meta = get_post_meta( $bktsk_live_id, 'bktsk_yt_live_start', true );
+					$bktsk_live_start_datetime             = new DateTime( $bktsk_live_start_meta, new DateTimeZone( 'UTC' ) );
+					$bktsk_live_start_format               = $bktsk_live_start_datetime->format( 'Ymd\THis\Z' );
+					$bktsk_live_start                      = 'DTSTART:' . $bktsk_live_start_format;
 
 					$bktsk_live_end_meta     = get_post_meta( $bktsk_live_id, 'bktsk_yt_live_end', true );
 					$bktsk_live_end_datetime = new DateTime( $bktsk_live_end_meta, new DateTimeZone( 'UTC' ) );
@@ -58,7 +62,12 @@ function bktsk_yt_live_make_events_ics( $args = array() ) {
 					break;
 
 				case 'all_day_live_schedule':
-					$bktsk_live_title          = '【時間未定】' . $bktsk_live_title;
+				case 'canceled_all_day_live_schedule':
+					if ( 'canceled_all_day_live_schedule' === $bktsk_live_type ) {
+						$bktsk_live_title = '[' . __( 'Canceled', 'BktskYtScheduler' ) . ']' . $bktsk_live_title;
+					} else {
+						$bktsk_live_title = '[' . __( 'Time not fixed', 'BktskYtScheduler' ) . ']' . $bktsk_live_title;
+					}
 					$bktsk_live_start_meta     = get_post_meta( $bktsk_live_id, 'bktsk_yt_all_day_live_start', true );
 					$bktsk_live_start_datetime = new DateTime( $bktsk_live_start_meta, new DateTimeZone( 'UTC' ) );
 					$bktsk_live_start_format   = $bktsk_live_start_datetime->format( 'Ymd' );
@@ -71,7 +80,7 @@ function bktsk_yt_live_make_events_ics( $args = array() ) {
 					break;
 
 				case 'day_off':
-					$bktsk_live_title          = '【休み】' . $bktsk_live_title;
+					$bktsk_live_title          = '[' . __( 'Day Off', 'BktskYtScheduler' ) . ']' . $bktsk_live_title;
 					$bktsk_live_start_meta     = get_post_meta( $bktsk_live_id, 'bktsk_yt_day_off_start', true );
 					$bktsk_live_start_datetime = new DateTime( $bktsk_live_start_meta, new DateTimeZone( 'UTC' ) );
 					$bktsk_live_start_format   = $bktsk_live_start_datetime->format( 'Ymd' );
