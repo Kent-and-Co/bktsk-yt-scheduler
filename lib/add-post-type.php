@@ -459,7 +459,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 				update_post_meta( $post_id, 'bktsk_yt_day_off_end', $bktsk_yt_day_off_end_update->format( 'Y-m-d' ) ); //値を保存
 				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_due', $bktsk_yt_day_off_end_update->modify( '+1 day' )->format( 'Y-m-d H:i:s' ) );
 			} else {
-				delete_post_meta( $post_id, 'bktsk_yt_live_frontpage_end' );
+				delete_post_meta( $post_id, 'bktsk_yt_live_frontpage_due' );
 				delete_post_meta( $post_id, 'bktsk_yt_day_off_end' );
 			}
 
@@ -518,3 +518,13 @@ function bktsk_yt_live_admin_custom_column( $bktsk_yt_live_column, $post_id ) {
 	}
 }
 add_action( 'manage_posts_custom_column', 'bktsk_yt_live_admin_custom_column', 10, 2 );
+
+function bktsk_yt_live_admin_post_order( $wp_query ) {
+	global $pagenow;
+	if ( is_admin() && 'edit.php' == $pagenow && ! isset( $_GET['orderby'] ) && 'bktskytlive' == $wp_query->query_vars['post_type'] ) {
+		$wp_query->set( 'orderby', 'meta_value' );
+		$wp_query->set( 'order', 'DESC' );
+		$wp_query->set( 'meta_key', 'bktsk_yt_live_frontpage_start' );
+	}
+}
+add_filter( 'pre_get_posts', 'bktsk_yt_live_admin_post_order' );
