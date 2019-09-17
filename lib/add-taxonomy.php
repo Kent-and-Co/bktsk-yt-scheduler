@@ -16,6 +16,9 @@ function bktsk_yt_live_add_taxonomy() {
 			'show_ui'           => true,
 			'show_in_nav_menus' => true,
 			'hierarchical'      => true,
+			'rewrite'           => array(
+				'slug' => 'live_category',
+			),
 		)
 	);
 }
