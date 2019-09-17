@@ -493,6 +493,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 function bktsk_yt_live_admin_add_columns( $bktsk_yt_live_defaults ) {
 	$bktsk_yt_live_defaults['bktsk_yt_live_start'] = __( 'Live Start', 'BktskYtScheduler' ); // ID と 表示させるラベル
 	$bktsk_yt_live_defaults['bktsk_yt_live_end']   = __( 'Live End', 'BktskYtScheduler' );
+	$bktsk_yt_live_defaults['bktsk_yt_live_url']   = __( 'Live URL', 'BktskYtScheduler' );
 	return $bktsk_yt_live_defaults;
 }
 add_filter( 'manage_bktskytlive_posts_columns', 'bktsk_yt_live_admin_add_columns' );
@@ -519,6 +520,10 @@ function bktsk_yt_live_admin_custom_column( $bktsk_yt_live_column, $post_id ) {
 				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_day_off_end', true );
 			}
 			break;
+
+		case 'bktsk_yt_live_url':
+			$bktsk_yt_live_url = get_post_meta( $post_id, 'bktsk_yt_live_url', true );
+			break;
 	}
 
 	if ( $bktsk_yt_live_post_meta ) {
@@ -530,6 +535,8 @@ function bktsk_yt_live_admin_custom_column( $bktsk_yt_live_column, $post_id ) {
 		$bktsk_yt_live_post_meta = new DateTime( $bktsk_yt_live_post_meta, new DateTimeZone( 'UTC' ) );
 		$bktsk_yt_live_post_meta->setTimezone( new DateTimeZone( $wp_timezone ) );
 		echo $bktsk_yt_live_post_meta->format( $bktsk_yt_live_time_format ) . '<br>(' . $wp_timezone . ')';
+	} elseif ( $bktsk_yt_live_url ) {
+		echo $bktsk_yt_live_url;
 	} else {
 		echo 'none';
 	}
