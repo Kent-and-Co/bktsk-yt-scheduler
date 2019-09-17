@@ -26,11 +26,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-load_plugin_textdomain(
-	'BktskYtScheduler',
-	false,
-	plugin_basename( dirname( __FILE__ ) ) . '/languages'
-);
+function bktsk_yt_scheduler_load_textdomain() {
+	load_plugin_textdomain(
+		'BktskYtScheduler',
+		false,
+		plugin_basename( dirname( __FILE__ ) ) . '/languages'
+	);
+}
+add_action( 'plugins_loaded', 'bktsk_yt_scheduler_load_textdomain' );
 
 require_once dirname( __FILE__ ) . '/lib/add-post-type.php'; // for Post Type
 require_once dirname( __FILE__ ) . '/lib/add-taxonomy.php'; // for custom taxonomy

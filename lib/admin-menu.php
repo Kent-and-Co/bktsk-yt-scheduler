@@ -5,11 +5,11 @@ add_action( 'admin_menu', 'bktsk_yt_live_admin_menu' );
 // 2つ目、アクションフックで呼ばれる関数
 function bktsk_yt_live_admin_menu() {
 	add_options_page(
-		__( 'YouTube Live Scheduler Settings', 'BktskYtScheduler' ), // page_title（オプションページのHTMLのタイトル）
-		__( 'YT Live Settings', 'BktskYtScheduler' ), // menu_title（メニューで表示されるタイトル）
-		'administrator', // capability
-		'bktskytscheduler', // menu_slug（URLのスラッグこの例だとoptions-general.php?page=hello-world）
-		'bktsk_yt_live_display_admin_page' // function
+		__( 'YouTube Live Scheduler Settings', 'BktskYtScheduler' ),
+		__( 'YT Live Settings', 'BktskYtScheduler' ),
+		'administrator',
+		'bktskytscheduler',
+		'bktsk_yt_live_display_admin_page'
 	);
 }
 

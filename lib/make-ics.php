@@ -49,7 +49,7 @@ EOF;
 
 		$bktsk_tmp = preg_replace( "/\r\n|\r|\n/", "\r\n", $bktsk_yt_live_calendar );
 		echo preg_replace( "/\r\n\r\n/", "\r\n", $bktsk_tmp );
-		exit;
+		exit();
 	}
 
 }

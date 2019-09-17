@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: BKTSK YouTube Scheduler\n"
-"POT-Creation-Date: 2019-09-17 18:26+0900\n"
-"PO-Revision-Date: 2019-09-17 18:25+0900\n"
+"POT-Creation-Date: 2019-09-17 22:49+0900\n"
+"PO-Revision-Date: 2019-09-17 22:48+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: plugin.php\n"
+"X-Poedit-WPHeader: bktsk-yt-live-scheduler.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -161,18 +161,6 @@ msgstr ""
 
 #: lib/admin-menu.php:9
 msgid "YT Live Settings"
-msgstr ""
-
-#: lib/get-post-type.php:51 lib/get-post-type.php:67
-msgid "Canceled"
-msgstr ""
-
-#: lib/get-post-type.php:69
-msgid "Time not fixed"
-msgstr ""
-
-#: lib/get-post-type.php:83
-msgid "Day Off"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
