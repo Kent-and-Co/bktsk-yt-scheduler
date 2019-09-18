@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: BKTSK YouTube Scheduler
+Plugin Name: BKTSK Live Scheduler
 Plugin URI:
-Description: Show YouTube Schedule in WordPress
+Description: Show Live Schedule in WordPress
 Version: 0.1.0
 Author: SASAGAWA Kiyoshi
 Author URI: https://kent-and-co.com
