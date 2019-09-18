@@ -3,7 +3,7 @@
 Plugin Name: BKTSK YouTube Scheduler
 Plugin URI:
 Description: Show YouTube Schedule in WordPress
-Version: 0.0.1
+Version: 0.1.0
 Author: SASAGAWA Kiyoshi
 Author URI: https://kent-and-co.com
 License: GPL v2 or later

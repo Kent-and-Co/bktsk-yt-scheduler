@@ -1,4 +1,10 @@
 <?php
+/**
+ * @package bktsk-yt-live-scheduler
+ * @author SASAGAWA Kiyoshi
+ * @license GPL-2.0+
+ */
+
 class BktskYtSchedulerAdminPage {
 
 	/**

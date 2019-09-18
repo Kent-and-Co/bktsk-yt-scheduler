@@ -1,9 +1,23 @@
 <?php
+/**
+ * @package bktsk-yt-live-scheduler
+ * @author SASAGAWA Kiyoshi
+ * @license GPL-2.0+
+ */
 
 // get posts using WP_Query
 function bktsk_yt_live_get_posts( $args = array() ) {
 	$args['post_type'] = 'bktskytlive';
 
+	if ( ! isset( $args['order'] ) ) {
+		$args['order'] = 'ASC';
+	}
+	if ( ! isset( $args['meta_key'] ) ) {
+		$args['meta_key'] = 'bktsk_yt_live_frontpage_start';
+	}
+	if ( ! isset( $args['orderby'] ) ) {
+		$args['orderby'] = 'meta_value';
+	}
 	$bktsk_yt_live_posts = new WP_Query( $args );
 	return $bktsk_yt_live_posts;
 }

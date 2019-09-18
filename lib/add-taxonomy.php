@@ -1,5 +1,11 @@
 <?php
+/**
+ * @package bktsk-yt-live-scheduler
+ * @author SASAGAWA Kiyoshi
+ * @license GPL-2.0+
+ */
 
+// add taxonomy to the custom post type
 function bktsk_yt_live_add_taxonomy() {
 
 	$bktsk_yt_live_options       = get_option( 'bktsk_yt_scheduler_options' );
