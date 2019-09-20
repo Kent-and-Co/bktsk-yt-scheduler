@@ -43,7 +43,7 @@ Instead of this feature, you can use iframe of Google Calendar.  Add your iCalen
 
 I'm so happy to get donation.
 There's an account to donate on PayPal.
-https;//paypal.me/sasagar
+https://paypal.me/sasagar
 
 ### How can I use the post type?
 
