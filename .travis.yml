@@ -8,7 +8,9 @@ branches:
     - "/\\d+\\.\\d+\\.\\d+?.*/"
 deploy:
   provider: script
-  script: deploy/deploy.sh
+  script: "sh deploy/deploy.sh"
+  on:
+    tags: true
 env:
   global:
     - SVN_REPOSITORY=https://plugins.svn.wordpress.org/bktsk-live-scheduler
