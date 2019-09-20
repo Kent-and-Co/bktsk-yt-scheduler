@@ -4,7 +4,7 @@ Donate link: https://paypal.me/sasagar
 Tags: schedule, calendar, youtube, live
 Requires at least: 4.3
 Tested up to: 5.2.3
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
