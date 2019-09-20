@@ -5,7 +5,7 @@ script:
   - php -l *.php
 branches:
   only:
-    - "/\\d\\.\\d\\.\\d/"
+    - "master"
 deploy:
   provider: script
   script: deploy/deploy.sh
