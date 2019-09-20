@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-class BktskYtSchedulerAdminPage {
+class bktsk - live - schedulerAdminPage {
 
 	/**
 	 * Holds the values to be used in the fields callbacks
@@ -26,10 +26,10 @@ class BktskYtSchedulerAdminPage {
 	public function add_plugin_page() {
 		// This page will be under "Settings"
 		add_options_page(
-			__( 'YouTube Live Scheduler Settings', 'BktskYtScheduler' ),
-			__( 'YT Live Settings', 'BktskYtScheduler' ),
+			__( 'YouTube Live Scheduler Settings', 'bktsk-live-scheduler' ),
+			__( 'YT Live Settings', 'bktsk-live-scheduler' ),
 			'administrator',
-			'bktskytscheduleradmin',
+			'bktsk-live-scheduleradmin',
 			array( $this, 'create_admin_page' )
 		);
 	}
@@ -43,7 +43,7 @@ class BktskYtSchedulerAdminPage {
 		?>
 		<div class="wrap">
 			<?php screen_icon(); ?>
-			<h2><?php _e( 'YouTube Live Scheduler Settings', 'BktskYtScheduler' ); ?></h2>
+			<h2><?php _e( 'YouTube Live Scheduler Settings', 'bktsk-live-scheduler' ); ?></h2>
 			<form method="post" action="options.php">
 			<?php
 				// This prints out all hidden setting fields
@@ -69,7 +69,7 @@ class BktskYtSchedulerAdminPage {
 		// add sction for slugs
 		add_settings_section(
 			'bktsk-yt-scheduler-slugs', // ID
-			__( 'Slugs', 'BktskYtScheduler' ), // Title
+			__( 'Slugs', 'bktsk-live-scheduler' ), // Title
 			array( $this, 'print_slugs_section_info' ), // Callback
 			'bktsk-yt-scheduler-admin' // Page
 		);
@@ -77,7 +77,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for post type slug
 		add_settings_field(
 			'posttype_slug', // ID
-			__( 'Live post slug', 'BktskYtScheduler' ), // Title
+			__( 'Live post slug', 'bktsk-live-scheduler' ), // Title
 			array( $this, 'posttype_slug_callback' ), // Callback
 			'bktsk-yt-scheduler-admin', // Page
 			'bktsk-yt-scheduler-slugs' // Section
@@ -86,7 +86,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for taxonomy slug
 		add_settings_field(
 			'taxonomy_slug',
-			__( 'Live category slug', 'BktskYtScheduler' ),
+			__( 'Live category slug', 'bktsk-live-scheduler' ),
 			array( $this, 'taxonomy_slug_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-slugs'
@@ -95,7 +95,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for iCalendar URL slug
 		add_settings_field(
 			'ical_slug',
-			__( 'Live iCalendar slug', 'BktskYtScheduler' ),
+			__( 'Live iCalendar slug', 'bktsk-live-scheduler' ),
 			array( $this, 'ical_slug_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-slugs'
@@ -104,7 +104,7 @@ class BktskYtSchedulerAdminPage {
 		// add section for iCalendar title/description
 		add_settings_section(
 			'bktsk-yt-scheduler-ical-info', // ID
-			__( 'iCalendar Info', 'BktskYtScheduler' ), // Title
+			__( 'iCalendar Info', 'bktsk-live-scheduler' ), // Title
 			array( $this, 'print_icalinfo_section_info' ), // Callback
 			'bktsk-yt-scheduler-admin' // Page
 		);
@@ -112,7 +112,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for name of iCalendar
 		add_settings_field(
 			'ical_title', // ID
-			__( 'iCalendar title', 'BktskYtScheduler' ), // Title
+			__( 'iCalendar title', 'bktsk-live-scheduler' ), // Title
 			array( $this, 'title_info_callback' ), // Callback
 			'bktsk-yt-scheduler-admin', // Page
 			'bktsk-yt-scheduler-ical-info' // Section
@@ -121,7 +121,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for description of iCalendar
 		add_settings_field(
 			'ical_desc',
-			__( 'iCalendar Description', 'BktskYtScheduler' ),
+			__( 'iCalendar Description', 'bktsk-live-scheduler' ),
 			array( $this, 'desc_info_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-ical-info'
@@ -130,7 +130,7 @@ class BktskYtSchedulerAdminPage {
 		// add section for iCalendar tags
 		add_settings_section(
 			'bktsk-yt-scheduler-ical-tags', // ID
-			__( 'iCalendar Tags', 'BktskYtScheduler' ), // Title
+			__( 'iCalendar Tags', 'bktsk-live-scheduler' ), // Title
 			array( $this, 'print_icaltags_section_info' ), // Callback
 			'bktsk-yt-scheduler-admin' // Page
 		);
@@ -138,7 +138,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for tag of canceled events
 		add_settings_field(
 			'canceled_tag', // ID
-			__( 'Canceled', 'BktskYtScheduler' ), // Title
+			__( 'Canceled', 'bktsk-live-scheduler' ), // Title
 			array( $this, 'canceled_tag_callback' ), // Callback
 			'bktsk-yt-scheduler-admin', // Page
 			'bktsk-yt-scheduler-ical-tags' // Section
@@ -147,7 +147,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for tag of time not fixed events
 		add_settings_field(
 			'notfixed_tag',
-			__( 'Time not fixed', 'BktskYtScheduler' ),
+			__( 'Time not fixed', 'bktsk-live-scheduler' ),
 			array( $this, 'notfixed_tag_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-ical-tags'
@@ -156,7 +156,7 @@ class BktskYtSchedulerAdminPage {
 		// add field for tag of day off events
 		add_settings_field(
 			'dayoff_tag',
-			__( 'Day off', 'BktskYtScheduler' ),
+			__( 'Day off', 'bktsk-live-scheduler' ),
 			array( $this, 'dayoff_tag_callback' ),
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-ical-tags'
@@ -208,9 +208,9 @@ class BktskYtSchedulerAdminPage {
 	 * Print the Section text
 	 */
 	public function print_slugs_section_info() {
-		_e( 'Fields of this section will be used for URL slugs. All fields will be urlencoded.', 'BktskYtScheduler' );
+		_e( 'Fields of this section will be used for URL slugs. All fields will be urlencoded.', 'bktsk-live-scheduler' );
 		echo '<br>';
-		_e( 'After changing this section, permalink update is strongly recommended', 'BktskYtScheduler' );
+		_e( 'After changing this section, permalink update is strongly recommended', 'bktsk-live-scheduler' );
 	}
 
 	/**
@@ -222,7 +222,7 @@ class BktskYtSchedulerAdminPage {
 			isset( $this->options['posttype_slug'] ) ? esc_attr( $this->options['posttype_slug'] ) : ''
 		);
 		echo '<div class="bktsk-yt-notes">';
-		_e( 'This will be used for post type slug of the lives. "live_schedule" is the default. (When this field is empty.)', 'BktskYtScheduler' );
+		_e( 'This will be used for post type slug of the lives. "live_schedule" is the default. (When this field is empty.)', 'bktsk-live-scheduler' );
 		echo '</div>';
 	}
 
@@ -235,7 +235,7 @@ class BktskYtSchedulerAdminPage {
 			isset( $this->options['taxonomy_slug'] ) ? esc_attr( $this->options['taxonomy_slug'] ) : ''
 		);
 		echo '<div class="bktsk-yt-notes">';
-		_e( 'This will be used for taxonomy slug of the lives. "live_category" is the default. (When this field is empty.)', 'BktskYtScheduler' );
+		_e( 'This will be used for taxonomy slug of the lives. "live_category" is the default. (When this field is empty.)', 'bktsk-live-scheduler' );
 		echo '</div>';
 	}
 
@@ -248,7 +248,7 @@ class BktskYtSchedulerAdminPage {
 			isset( $this->options['ical_slug'] ) ? esc_attr( $this->options['ical_slug'] ) : ''
 		);
 		echo '<div class="bktsk-yt-notes">';
-		_e( 'This will be used for iCalendar URL slug. "bktsk_yt_live" is the default. (When this field is empty.)', 'BktskYtScheduler' );
+		_e( 'This will be used for iCalendar URL slug. "bktsk_yt_live" is the default. (When this field is empty.)', 'bktsk-live-scheduler' );
 		echo '</div>';
 	}
 
@@ -256,7 +256,7 @@ class BktskYtSchedulerAdminPage {
 	 * Print the Section text
 	 */
 	public function print_icalinfo_section_info() {
-		_e( 'Fields of this section will be used on the iCalendar.', 'BktskYtScheduler' );
+		_e( 'Fields of this section will be used on the iCalendar.', 'bktsk-live-scheduler' );
 	}
 
 	/**
@@ -283,9 +283,9 @@ class BktskYtSchedulerAdminPage {
 	 * Print the Section text
 	 */
 	public function print_icaltags_section_info() {
-		_e( 'Fields of this section will be used just before title (VEVENT/SUMMARY) on the iCalendar.', 'BktskYtScheduler' );
+		_e( 'Fields of this section will be used just before title (VEVENT/SUMMARY) on the iCalendar.', 'bktsk-live-scheduler' );
 		echo '<br>';
-		_e( 'When none given, nothing will be added.', 'BktskYtScheduler' );
+		_e( 'When none given, nothing will be added.', 'bktsk-live-scheduler' );
 	}
 
 	/**
@@ -320,5 +320,5 @@ class BktskYtSchedulerAdminPage {
 }
 
 if ( is_admin() ) {
-	$bktsk_yt_scheduler_settings_page = new BktskYtSchedulerAdminPage();
+	$bktsk_yt_scheduler_settings_page = new bktsk - live - schedulerAdminPage();
 }

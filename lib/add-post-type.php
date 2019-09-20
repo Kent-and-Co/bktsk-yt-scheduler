@@ -18,20 +18,20 @@ function bktsk_yt_scheduler_post_type_init() {
 	}
 
 	$labels = array(
-		'name'               => _x( 'YouTube Live Schedules', 'post type general name', 'BktskYtScheduler' ),
-		'singular_name'      => _x( 'YouTube Live Schedule', 'post type singular name', 'BktskYtScheduler' ),
-		'menu_name'          => _x( 'YT Live', 'admin menu', 'BktskYtScheduler' ),
-		'name_admin_bar'     => _x( 'YT Live', 'add new on admin bar', 'BktskYtScheduler' ),
-		'add_new'            => _x( 'Add New', 'Live', 'BktskYtScheduler' ),
-		'add_new_item'       => __( 'Add New Live', 'BktskYtScheduler' ),
-		'new_item'           => __( 'New Live', 'BktskYtScheduler' ),
-		'edit_item'          => __( 'Edit Live', 'BktskYtScheduler' ),
-		'view_item'          => __( 'View Live', 'BktskYtScheduler' ),
-		'all_items'          => __( 'All Live Schedules', 'BktskYtScheduler' ),
-		'search_items'       => __( 'Search Live Schedules', 'BktskYtScheduler' ),
-		'parent_item_colon'  => __( 'Parent Lives:', 'BktskYtScheduler' ),
-		'not_found'          => __( 'No Live found.', 'BktskYtScheduler' ),
-		'not_found_in_trash' => __( 'No Live found in Trash.', 'BktskYtScheduler' ),
+		'name'               => _x( 'YouTube Live Schedules', 'post type general name', 'bktsk-live-scheduler' ),
+		'singular_name'      => _x( 'YouTube Live Schedule', 'post type singular name', 'bktsk-live-scheduler' ),
+		'menu_name'          => _x( 'YT Live', 'admin menu', 'bktsk-live-scheduler' ),
+		'name_admin_bar'     => _x( 'YT Live', 'add new on admin bar', 'bktsk-live-scheduler' ),
+		'add_new'            => _x( 'Add New', 'Live', 'bktsk-live-scheduler' ),
+		'add_new_item'       => __( 'Add New Live', 'bktsk-live-scheduler' ),
+		'new_item'           => __( 'New Live', 'bktsk-live-scheduler' ),
+		'edit_item'          => __( 'Edit Live', 'bktsk-live-scheduler' ),
+		'view_item'          => __( 'View Live', 'bktsk-live-scheduler' ),
+		'all_items'          => __( 'All Live Schedules', 'bktsk-live-scheduler' ),
+		'search_items'       => __( 'Search Live Schedules', 'bktsk-live-scheduler' ),
+		'parent_item_colon'  => __( 'Parent Lives:', 'bktsk-live-scheduler' ),
+		'not_found'          => __( 'No Live found.', 'bktsk-live-scheduler' ),
+		'not_found_in_trash' => __( 'No Live found in Trash.', 'bktsk-live-scheduler' ),
 	);
 
 	$args = array(
@@ -67,7 +67,7 @@ function bktsk_yt_scheduler_block_disabler( $use_block_editor, $post ) {
 
 add_action( 'admin_init', 'bktsk_yt_scheduler_add_meta_box' );
 function bktsk_yt_scheduler_add_meta_box() {
-	add_meta_box( 'bktsk_yt_scheduler_meta_box', __( 'Live Date/Time', 'BktskYtScheduler' ), 'bktsk_yt_scheduler_meta_html', 'bktskytlive', 'normal' );
+	add_meta_box( 'bktsk_yt_scheduler_meta_box', __( 'Live Date/Time', 'bktsk-live-scheduler' ), 'bktsk_yt_scheduler_meta_html', 'bktskytlive', 'normal' );
 }
 
 function bktsk_yt_scheduler_meta_html() {
@@ -251,17 +251,17 @@ function bktsk_yt_scheduler_meta_html() {
 	</script>
 	<div id="live-time">
 	<select id='bktsk_yt_live_type' name="bktsk_yt_live_type">
-		<option value="live_schedule"><?php _e( 'Live Schedule (time fixed)', 'BktskYtScheduler' ); ?></option>
-		<option value="canceled_live_schedule"><?php _e( 'Canceled Live Schedule (time fixed)', 'BktskYtScheduler' ); ?></option>
-		<option value="all_day_live_schedule"><?php _e( 'Live Date (time not fixed)', 'BktskYtScheduler' ); ?></option>
-		<option value="canceled_all_day_live_schedule"><?php _e( 'Canceled Live Date (time not fixed)', 'BktskYtScheduler' ); ?></option>
-		<option value="day_off"><?php _e( 'Live Day Off (decided not to live)', 'BktskYtScheduler' ); ?></option>
+		<option value="live_schedule"><?php _e( 'Live Schedule (time fixed)', 'bktsk-live-scheduler' ); ?></option>
+		<option value="canceled_live_schedule"><?php _e( 'Canceled Live Schedule (time fixed)', 'bktsk-live-scheduler' ); ?></option>
+		<option value="all_day_live_schedule"><?php _e( 'Live Date (time not fixed)', 'bktsk-live-scheduler' ); ?></option>
+		<option value="canceled_all_day_live_schedule"><?php _e( 'Canceled Live Date (time not fixed)', 'bktsk-live-scheduler' ); ?></option>
+		<option value="day_off"><?php _e( 'Live Day Off (decided not to live)', 'bktsk-live-scheduler' ); ?></option>
 	</select>
 
 	<!-- form area for live schedule (time fixed) -->
 	<table id="bktsk_yt_live_schedule">
 		<tr>
-			<th><?php _e( 'Live Schedule', 'BktskYtScheduler' ); ?></th>
+			<th><?php _e( 'Live Schedule', 'bktsk-live-scheduler' ); ?></th>
 			<td id="bktsk_yt_live">
 				<input type="text" class="date start" name="bktsk_yt_live_start_date" autocomplete="off"
 				<?php
@@ -276,7 +276,7 @@ function bktsk_yt_scheduler_meta_html() {
 					echo ' value="' . $bktsk_yt_live_start_time . '"';
 				}
 				?>
-				> <?php _e( 'to', 'BktskYtScheduler' ); ?>
+				> <?php _e( 'to', 'bktsk-live-scheduler' ); ?>
 				<input type="text" class="date end" name="bktsk_yt_live_end_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_live_end_date ) ) {
@@ -298,7 +298,7 @@ function bktsk_yt_scheduler_meta_html() {
 	<!-- form for live schedule without time (time not fixed but scheduled) -->
 	<table id="bktsk_yt_all_day_live_schedule">
 		<tr>
-			<th><?php _e( 'Live Date', 'BktskYtScheduler' ); ?></th>
+			<th><?php _e( 'Live Date', 'bktsk-live-scheduler' ); ?></th>
 			<td id="bktsk_yt_all_day_live">
 				<input type="text" class="date start" name="bktsk_yt_all_day_live_start_date" autocomplete="off"
 				<?php
@@ -306,7 +306,7 @@ function bktsk_yt_scheduler_meta_html() {
 					echo ' value="' . $bktsk_yt_all_day_live_start_date . '"';
 				}
 				?>
-				> <?php _e( 'to', 'BktskYtScheduler' ); ?>
+				> <?php _e( 'to', 'bktsk-live-scheduler' ); ?>
 				<input type="text" class="date end" name="bktsk_yt_all_day_live_end_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_all_day_live_end_date ) ) {
@@ -321,7 +321,7 @@ function bktsk_yt_scheduler_meta_html() {
 	<!-- form for day off (decided not to live) -->
 	<table id="bktsk_yt_day_off_schedule">
 		<tr>
-			<th><?php _e( 'Date of Day Off', 'BktskYtScheduler' ); ?></th>
+			<th><?php _e( 'Date of Day Off', 'bktsk-live-scheduler' ); ?></th>
 			<td id="bktsk_yt_day_off">
 				<input type="text" class="date start" name="bktsk_yt_day_off_start_date" autocomplete="off"
 				<?php
@@ -329,7 +329,7 @@ function bktsk_yt_scheduler_meta_html() {
 					echo ' value="' . $bktsk_yt_day_off_start_date . '"';
 				}
 				?>
-				> <?php _e( 'to', 'BktskYtScheduler' ); ?>
+				> <?php _e( 'to', 'bktsk-live-scheduler' ); ?>
 				<input type="text" class="date end" name="bktsk_yt_day_off_end_date" autocomplete="off"
 				<?php
 				if ( isset( $bktsk_yt_day_off_end_date ) ) {
@@ -343,14 +343,14 @@ function bktsk_yt_scheduler_meta_html() {
 
 	<table>
 		<tr>
-			<th><?php _e( 'TimeZone', 'BktskYtScheduler' ); ?></th>
-			<td><?php echo $timezone->format( 'e (P)' ); ?> <span class="bktsk_yt_live_notice">* <?php _e( 'This can be changed at settings page from dashboard.', 'BktskYtScheduler' ); ?></span></td>
+			<th><?php _e( 'TimeZone', 'bktsk-live-scheduler' ); ?></th>
+			<td><?php echo $timezone->format( 'e (P)' ); ?> <span class="bktsk_yt_live_notice">* <?php _e( 'This can be changed at settings page from dashboard.', 'bktsk-live-scheduler' ); ?></span></td>
 		</tr>
 	</table>
 
 	<table>
 		<tr>
-			<th><?php _e( 'URL', 'BktskYtScheduler' ); ?></th>
+			<th><?php _e( 'URL', 'bktsk-live-scheduler' ); ?></th>
 			<td><input type="text" class="url" name="bktsk_yt_live_url" autocomplete="off"
 			<?php
 			if ( isset( $bktsk_yt_live_url ) ) {
@@ -498,9 +498,9 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 // add columns on the edit.php
 
 function bktsk_yt_live_admin_add_columns( $bktsk_yt_live_defaults ) {
-	$bktsk_yt_live_defaults['bktsk_yt_live_start'] = __( 'Live Start', 'BktskYtScheduler' ); // ID と 表示させるラベル
-	$bktsk_yt_live_defaults['bktsk_yt_live_end']   = __( 'Live End', 'BktskYtScheduler' );
-	$bktsk_yt_live_defaults['bktsk_yt_live_url']   = __( 'Live URL', 'BktskYtScheduler' );
+	$bktsk_yt_live_defaults['bktsk_yt_live_start'] = __( 'Live Start', 'bktsk-live-scheduler' ); // ID と 表示させるラベル
+	$bktsk_yt_live_defaults['bktsk_yt_live_end']   = __( 'Live End', 'bktsk-live-scheduler' );
+	$bktsk_yt_live_defaults['bktsk_yt_live_url']   = __( 'Live URL', 'bktsk-live-scheduler' );
 	return $bktsk_yt_live_defaults;
 }
 add_filter( 'manage_bktskytlive_posts_columns', 'bktsk_yt_live_admin_add_columns' );

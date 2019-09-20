@@ -3,11 +3,11 @@
 Plugin Name: BKTSK Live Scheduler
 Plugin URI:
 Description: Show Live Schedule in WordPress
-Version: 0.1.4
+Version: 0.1.5
 Author: SASAGAWA Kiyoshi
 Author URI: https://kent-and-co.com
 License: GPL v2 or later
-Text Domain: BktskYtScheduler
+Text Domain: bktsk-live-scheduler
 Domain Path: /languages/
 
 Copyright 2019 SASAGAWA Kiyoshi (email : sasagawa@kent-and-co.com)
@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 function bktsk_yt_scheduler_load_textdomain() {
 	load_plugin_textdomain(
-		'BktskYtScheduler',
+		'bktsk-live-scheduler',
 		false,
 		plugin_basename( dirname( __FILE__ ) ) . '/languages'
 	);
@@ -39,4 +39,4 @@ require_once dirname( __FILE__ ) . '/lib/add-post-type.php'; // for Post Type
 require_once dirname( __FILE__ ) . '/lib/add-taxonomy.php'; // for custom taxonomy
 require_once dirname( __FILE__ ) . '/lib/make-ics.php'; // for ics response
 require_once dirname( __FILE__ ) . '/lib/get-post-type.php'; // for post data from the post type
-require_once dirname( __FILE__ ) . '/lib/class-bktskytscheduleradminpage.php'; // for Admin Menus
+require_once dirname( __FILE__ ) . '/lib/class-bktsk-live-scheduleradminpage.php'; // for Admin Menus

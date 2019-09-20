@@ -19,11 +19,11 @@ function bktsk_yt_live_add_taxonomy() {
 		'bktsk-yt-live-taxonomy',
 		'bktskytlive',
 		array(
-			'label'             => __( 'Live Categories', 'BktskYtScheduler' ),
-			'singular_label'    => __( 'Live Category', 'BktskYtScheduler' ),
+			'label'             => __( 'Live Categories', 'bktsk-live-scheduler' ),
+			'singular_label'    => __( 'Live Category', 'bktsk-live-scheduler' ),
 			'labels'            => array(
-				'all_items'    => __( 'All live categories', 'BktskYtScheduler' ),
-				'add_new_item' => __( 'Add new live category', 'BktskYtScheduler' ),
+				'all_items'    => __( 'All live categories', 'bktsk-live-scheduler' ),
+				'add_new_item' => __( 'Add new live category', 'bktsk-live-scheduler' ),
 			),
 			'public'            => true,
 			'show_ui'           => true,

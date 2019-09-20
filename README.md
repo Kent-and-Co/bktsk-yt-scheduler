@@ -50,6 +50,10 @@ Now In Progress...
 
 == Changelog ==
 
+### 0.1.5
+
+Changes to support languages.
+
 ### 0.1.4
 
 Fixing readme.
