@@ -4,7 +4,7 @@ Donate link: https://paypal.me/sasagar
 Tags: schedule, calendar, youtube, live
 Requires at least: 4.3
 Tested up to: 5.2.3
-Stable tag: 0.1.6
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,7 +41,7 @@ Instead of this feature, you can use iframe of Google Calendar.  Add your iCalen
 
 ### Donation?
 
-I'm so happy to get donation.
+I'm so happy to get a donation.
 There's an account to donate on PayPal.
 https://paypal.me/sasagar
 
@@ -57,6 +57,9 @@ You can use any WordPress tags and functions for the post type and taxonomy.  He
 Now In Progress...
 
 == Changelog ==
+
+### 0.2.0
+Enable quick edit for Live URL.
 
 ### 0.1.6
 Fixing Class name.

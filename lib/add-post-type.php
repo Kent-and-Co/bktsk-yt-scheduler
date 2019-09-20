@@ -396,17 +396,17 @@ function bktsk_yt_scheduler_load_jquery( $hook ) {
 add_action( 'save_post_bktskytlive', 'bktsk_yt_scheduler_save_fields' );
 
 function bktsk_yt_scheduler_save_fields( $post_id ) {
-	$bktskytlive_live_box_nonce = isset( $_POST['bktskytlive-live-nonce'] ) ? $_POST['bktskytlive-live-nonce'] : null;
+		$bktskytlive_live_box_nonce = isset( $_POST['bktskytlive-live-nonce'] ) ? $_POST['bktskytlive-live-nonce'] : null;
 	if ( ! wp_verify_nonce( $bktskytlive_live_box_nonce, 'bktskytlive-live-info-update' ) ) {
 		return;
 	}
 
-	$wp_timezone = get_option( 'timezone_string' );
+		$wp_timezone = get_option( 'timezone_string' );
 
-	$bktsk_yt_live_type = sanitize_text_field( $_POST['bktsk_yt_live_type'] );
-	update_post_meta( $post_id, 'bktsk_yt_live_type', $bktsk_yt_live_type );
+		$bktsk_yt_live_type = sanitize_text_field( $_POST['bktsk_yt_live_type'] );
+		update_post_meta( $post_id, 'bktsk_yt_live_type', $bktsk_yt_live_type );
 
-	$bktsk_yt_live_url = esc_url( $_POST['bktsk_yt_live_url'] );
+		$bktsk_yt_live_url = esc_url( $_POST['bktsk_yt_live_url'] );
 	if ( ! empty( $bktsk_yt_live_url ) ) {
 		update_post_meta( $post_id, 'bktsk_yt_live_url', $bktsk_yt_live_url );
 	} else {
@@ -559,3 +559,57 @@ function bktsk_yt_live_admin_post_order( $wp_query ) {
 	}
 }
 add_filter( 'pre_get_posts', 'bktsk_yt_live_admin_post_order' );
+
+
+// showing quick edit
+function bktsk_yt_live_admin_quickmenu( $column_name, $post_type ) {
+	static $print_nonce = true;
+	if ( $print_nonce ) {
+		$print_nonce = false;
+		wp_nonce_field( 'quick_edit_action', $post_type . '_edit_nonce' ); //CSRF対策
+	}
+	?>
+<fieldset class="inline-edit-col-right inline-custom-meta">
+<div class="inline-edit-col column-<?php echo $column_name; ?>">
+			<label class="inline-edit-group"></p>
+			<?php
+			switch ( $column_name ) {
+				case 'bktsk_yt_live_url':
+					?>
+						<span class="title"><?php _e( 'Live URL', 'bktsk-live-scheduler' ); ?></span><input name="bktsk_yt_live_url" />
+					<?php
+					break;
+			}
+			?>
+			</label>
+		</div>
+</fieldset>
+	<?php
+}
+add_action( 'quick_edit_custom_box', 'bktsk_yt_live_admin_quickmenu', 10, 2 );
+
+function bktsk_yt_live_admin_custom_meta( $post_id ) {
+	$slug = 'bktskytlive';
+	if ( get_post_type( $post_id ) !== $slug ) {
+		return;
+	}
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+	$_POST += array( "{$slug}_edit_nonce" => '' );
+	if ( ! wp_verify_nonce( $_POST[ "{$slug}_edit_nonce" ], 'quick_edit_action' ) ) {
+		return;
+	}
+	if ( isset( $_REQUEST['bktsk_yt_live_url'] ) ) {
+		update_post_meta( $post_id, 'bktsk_yt_live_url', esc_url( $_REQUEST['bktsk_yt_live_url'] ) );
+	} else {
+		delete_post_meta( $post_id, 'bktsk_yt_live_url' );
+	}
+}
+add_action( 'save_post', 'bktsk_yt_live_admin_custom_meta' );
+
+// load show-customfields.js only in edit.js
+function bktsk_yt_live_admin_script() {
+	wp_enqueue_script( 'bktsk_yt_live_admin_script', plugins_url( '../js/', __FILE__ ) . '/show-customfields.js', array( 'jquery', 'inline-edit-post' ) );
+}
+add_action( 'admin_enqueue_scripts', 'bktsk_yt_live_admin_script' );

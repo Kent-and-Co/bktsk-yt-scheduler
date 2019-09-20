@@ -14,9 +14,9 @@ Also iCalendar file can be delivered. It can be imported with URL to the major c
 
 ### This plugin can be installed directly from your site.
 
-Log in and navigate to Plugins â†’ Add New.
-Type "BKTSK Live Scheduler" into the Search and hit Enter.
-Locate the BKTSK Live Scheduler in the list of search results and click "Install Now".
+Log in and navigate to Plugins â†’ Add New.  
+Type "BKTSK Live Scheduler" into the Search and hit Enter.  
+Locate the BKTSK Live Scheduler in the list of search results and click "Install Now".  
 Once installed, click the Activate link.
 
 == Frequently asked questions ==
@@ -28,13 +28,13 @@ The iCalendar file would be delivered using specified url (you can change the sl
 
 ### Is this able to show the calendar?
 
-I'm sorry this function is now in progress. Please wait for that!
+I'm sorry this function is now in progress. Please wait for that!  
 Instead of this feature, you can use iframe of Google Calendar. Add your iCalendar with the URL and get the code of iframe on the setting page of the Google Calendar. Now you can put the calendar on any other space!!
 
 ### Donation?
 
-I'm so happy to get donation.
-There's an account to donate on PayPal.
+I'm so happy to get a donation.  
+There's an account to donate on PayPal.  
 <https://paypal.me/sasagar>
 
 ### How can I use the post type?
@@ -49,6 +49,10 @@ You can use any WordPress tags and functions for the post type and taxonomy. Her
 Now In Progress...
 
 == Changelog ==
+
+### 0.2.0
+
+Enable quick edit for Live URL.
 
 ### 0.1.6
 

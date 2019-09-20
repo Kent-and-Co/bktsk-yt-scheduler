@@ -3,7 +3,7 @@
 Plugin Name: BKTSK Live Scheduler
 Plugin URI:
 Description: Show Live Schedule in WordPress
-Version: 0.1.6
+Version: 0.2.0
 Author: SASAGAWA Kiyoshi
 Author URI: https://kent-and-co.com
 License: GPL v2 or later
