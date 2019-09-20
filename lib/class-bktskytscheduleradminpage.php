@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-class bktsk - live - schedulerAdminPage {
+class BktskYtSchedulerAdminPage {
 
 	/**
 	 * Holds the values to be used in the fields callbacks
@@ -320,5 +320,5 @@ class bktsk - live - schedulerAdminPage {
 }
 
 if ( is_admin() ) {
-	$bktsk_yt_scheduler_settings_page = new bktsk - live - schedulerAdminPage();
+	$bktsk_yt_scheduler_settings_page = new BktskYtSchedulerAdminPage();
 }
