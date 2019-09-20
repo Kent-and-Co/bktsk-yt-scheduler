@@ -50,6 +50,11 @@ Now In Progress...
 
 == Changelog ==
 
+### 0.1.6
+
+Fixing Class name.
+Fixing file name.
+
 ### 0.1.5
 
 Changes to support languages.
