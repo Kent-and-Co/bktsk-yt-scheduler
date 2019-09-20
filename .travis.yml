@@ -9,8 +9,6 @@ branches:
 deploy:
   provider: script
   script: deploy/deploy.sh
-  on:
-    tags: true
 env:
   global:
     - SVN_REPOSITORY=https://plugins.svn.wordpress.org/bktsk-live-scheduler
