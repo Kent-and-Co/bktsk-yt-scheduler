@@ -1,18 +1,18 @@
 language: php
-php:
-  - 7.0
+matrix:
+  include:
+    - php: 7.1
+      env: WP_VERSION=latest WP_PULUGIN_DEPLOY=1
 script:
   - php -l *.php
 branches:
   only:
     - "/\\d+\\.\\d+\\.\\d+?.*/"
-deploy:
-  provider: script
-  script: "sh deploy/deploy.sh"
-  on:
-    tags: true
+after_success: "curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash"
 env:
   global:
     - SVN_REPOSITORY=https://plugins.svn.wordpress.org/bktsk-live-scheduler
     - secure: eaSob98yZ/uAU+Lke3O5rl1OsRvpP6BkqmFCeO2PGTU7LL44V3yWKORylgWTGLOfHWtb8zxYRTtnsbVwUagWV0XGZn7Yu4tQVL/T6Gz4ntj2x0ilEHd1VT8wdeGlM4+hxHEqEyDbeZ9E61eQTnnCe6Y8YCWRE69ucio9bWjWbLRDHK8ELCopYW3bjK1y+NEseXwPl7S6KzmRYG4D4EfKbKCJVjXObs4yDxF/LIJyjJlqF0WaXL0/BPU80DUTrUWnUeytIJP5U/y3lKyinfEEuYsvxXxtRq7lVAsuqpz2qpMDkBxQAKUkIveJOvy5CBN0KaUWDFrDB7KQ6laroe91hCUG+LBm1laasb9iaJjPUS68jNbeR4Xslpg40W4jfRuVt75XJiRR0KoUw/rovgj6j13I1/xtyr1Inom0SRg9dG02wz2Q0+NAY2KX7KooyclFkm4RG5zikZzCivh5SjKRjGeN9twdwC376hfo4Hd1AyzveAyL60IitcYFgWAixJpAyRlXcNykq9X09LEUwAyIrM6fijsBs6XRa2eNSW8wF+7dYzf1b0ZQVowmQKKndWvxx2BkzoPaF5GvpAbsPsu3UIgS5mhVtG7CwvGi/7cFGu6DKyI4mMK2FN6t6ueqbhSXvhnm146zKb3J5+Ztu1nM6rzdRf87Mms1ERD1Eh3UhnU=
     - secure: AyHcwbk2/GrbiEKmy6bAs/hxbtxFBh4cNWvUIGDbOOxKIgXyWmPCOJnfWPmMQCjKAJDVT6deNOIJ8KF0VlqIzKq7q9DryMSHdbhTzB25VxmaCnBmGZysbF/7JbB11/9JOnvvvE9f0UErHIm3EPixmd6TO+kc3LMCiGTl5B7P3MHI7Jsmx11/b8XzKPSwd9pBdXV62KiKULBdjDZZlX27KVyWI90PD46BAt7wHh1kZWx6c6mm0th1mYUJm6C+iidpytoBPqpvPeqgP69IhvoHXcpt8u4TAzs8b65oZKOYSO/afuunWurIDi7c2tcB/KUnRLvU5e4fP9F6I6NIiJDcC5V1Z+SP9b7kScCs8P97ysd9AUaLmhzpYjPGgZ5iRthwRBAszJRUynAXPLqHme0fgOUTaeuNbog7JhV6uAA457fJGWK8wzu2r/4bLxX+HzhX8deGiqvuvtOUJceEVlZATPot65OnNvXcU+CFKyb2lGZWcS/3KamqfT9+n1DQxDFbpnNeWSzfG5uz9IsI5hoVnBrq1ZN/zb1o8kKEZ09GGQ1GrjGEv7asLwVotE+lSNdigKNdcBpzV6CVkGwaPSvt6XeQgmN5ZQEk/0r4ZdGNLHTWeF5nX08Om8AR+0YG2YQ/JH5XPAWy2NSuYaI7AQEWitXso9tzrzZX1QrL5Bb5dd8=
+    - secure: "DpVvfnkEyQGpsPodsE2zwg321p0UrSFFfBihynY3lGsj4+Z8lHi9aGV8tYMFPoamc0OCN4Zwc63182/pSCCqGP4szgmTqUujaaWbmSDgv7KS+wbG0mjzbcjCvS/gbadZuHYqW82M3d4AC19WgyVmZdklOJAaR/dVE6/WPd2aEtGgQkpWgoR+MX1/Dwv5fzmimDx/zQcQpgGp/X8LeDMA15iCFUI4EBBSHCjbuVb15aKSurGdArO2mKnIDgzjOJ5a3LhsvX9DuFHsZ9VGKQO4lBSoIl+yw/c60ZGsi3VvKRmV2PoqTaO5G2ytAI93E5w2CevXd77zhSldz0miLrTvu+WI1h+i7dEvT+98D/oc/xuNj2x0e0fG6WQQrVI40BEdQEOdjY4Yl3Se5HT6iHQVwRnHYIfFYfdfszlfBPjJk343R/34YWVQD04HcU5mNUebHrJs11hGn9JoY3XnysWykLQvh+LE2R/ixkalL9neL9juK8rNnpvJ/zTTzXn9Z/RgSA8pQpRS98EiEwB6ViCaZTjPRtgzytyWWJBGnGwuCiaMcvCrsQKlnRWOO/MPdMtUshN5oOjod3fZc72V2wBzmr9G/gcAn+bEK8ba3LTFVi+EALNsKCgHM6fuHNNJ68hTl2KA1R0x4Slkyy/ij5HjtyZ3DLf9uj2LkJpA4t822EQ="
+    - SVN_REPO: https://plugins.svn.wordpress.org/bktsk-live-scheduler

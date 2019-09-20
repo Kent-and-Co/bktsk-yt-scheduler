@@ -1,0 +1,6 @@
+.git
+.gitignore
+deploy
+.travis.yml
+.ftpconfig
+README.md

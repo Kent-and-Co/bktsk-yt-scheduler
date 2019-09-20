@@ -58,6 +58,13 @@ Now In Progress...
 
 == Changelog ==
 
+### 0.1.3
+Fixing readme.
+Testing Automation.
+
+### 0.1.2
+Release automation.
+
 ### 0.1.0
 The first release.
 
