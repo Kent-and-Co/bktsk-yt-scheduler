@@ -377,9 +377,11 @@ function bktsk_yt_scheduler_load_jquery( $hook ) {
 			$style_url = plugins_url( '../style/', __FILE__ );
 			wp_enqueue_script( 'datepair', $js_url . 'datepair.min.js', array( 'jquery' ) );
 			wp_enqueue_script( 'jquery-datepair', $js_url . 'jquery.datepair.js', array( 'jquery' ) );
-			wp_enqueue_script( 'jquery-ui', $js_url . 'jquery-ui.min.js', array( 'jquery' ) );
+			//wp_enqueue_script( 'jquery-ui-core' );
+			wp_enqueue_script( 'jquery-ui-datepicker' );
 			wp_enqueue_script( 'jquery-timepicker', $js_url . 'jquery.timepicker.min.js', array( 'jquery' ) );
-			wp_enqueue_script( 'moment', $js_url . 'moment.min.js', array( 'jquery' ) );
+			wp_enqueue_script( 'moment' );
+			//wp_enqueue_script( 'moment', $js_url . 'moment.min.js', array( 'jquery' ) );
 
 			wp_enqueue_style( 'jquery-ui', $style_url . 'jquery-ui.min.css' );
 			wp_enqueue_style( 'jquery-ui-structure', $style_url . 'jquery-ui.structure.min.css' );
@@ -401,10 +403,10 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 
 	$wp_timezone = get_option( 'timezone_string' );
 
-	$bktsk_yt_live_type = $_POST['bktsk_yt_live_type'];
+	$bktsk_yt_live_type = sanitize_text_field( $_POST['bktsk_yt_live_type'] );
 	update_post_meta( $post_id, 'bktsk_yt_live_type', $bktsk_yt_live_type );
 
-	$bktsk_yt_live_url = $_POST['bktsk_yt_live_url'];
+	$bktsk_yt_live_url = esc_url( $_POST['bktsk_yt_live_url'] );
 	if ( ! empty( $bktsk_yt_live_url ) ) {
 		update_post_meta( $post_id, 'bktsk_yt_live_url', $bktsk_yt_live_url );
 	} else {
@@ -415,7 +417,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 		case 'live_schedule':
 		case 'canceled_live_schedule':
 			if ( isset( $_POST['bktsk_yt_live_start_date'] ) && isset( $_POST['bktsk_yt_live_start_time'] ) ) {
-				$bktsk_yt_live_start_update = new DateTime( $_POST['bktsk_yt_live_start_date'] . 'T' . $_POST['bktsk_yt_live_start_time'], new DateTimeZone( $wp_timezone ) );
+				$bktsk_yt_live_start_update = new DateTime( sanitize_text_field( $_POST['bktsk_yt_live_start_date'] ) . 'T' . sanitize_text_field( $_POST['bktsk_yt_live_start_time'] ), new DateTimeZone( $wp_timezone ) );
 				$bktsk_yt_live_start_update->setTimezone( new DateTimeZone( 'UTC' ) );
 				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_start', $bktsk_yt_live_start_update->format( 'Y-m-d H:i:s' ) );
 				update_post_meta( $post_id, 'bktsk_yt_live_start', $bktsk_yt_live_start_update->format( DateTime::ISO8601 ) );
@@ -425,7 +427,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 			}
 
 			if ( isset( $_POST['bktsk_yt_live_end_date'] ) && isset( $_POST['bktsk_yt_live_end_time'] ) ) {
-				$bktsk_yt_live_end_update = new DateTime( $_POST['bktsk_yt_live_end_date'] . 'T' . $_POST['bktsk_yt_live_end_time'], new DateTimeZone( $wp_timezone ) );
+				$bktsk_yt_live_end_update = new DateTime( sanitize_text_field( $_POST['bktsk_yt_live_end_date'] ) . 'T' . sanitize_text_field( $_POST['bktsk_yt_live_end_time'] ), new DateTimeZone( $wp_timezone ) );
 				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_due', $bktsk_yt_live_end_update->format( 'Y-m-d H:i:s' ) );
 				$bktsk_yt_live_end_update->setTimezone( new DateTimeZone( 'UTC' ) );
 				update_post_meta( $post_id, 'bktsk_yt_live_end', $bktsk_yt_live_end_update->format( DateTime::ISO8601 ) );
@@ -443,7 +445,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 		case 'all_day_live_schedule':
 		case 'canceled_all_day_live_schedule':
 			if ( isset( $_POST['bktsk_yt_all_day_live_start_date'] ) ) {
-				$bktsk_yt_all_day_live_start_update = new DateTime( $_POST['bktsk_yt_all_day_live_start_date'], new DateTimeZone( $wp_timezone ) );
+				$bktsk_yt_all_day_live_start_update = new DateTime( sanitize_text_field( $_POST['bktsk_yt_all_day_live_start_date'] ), new DateTimeZone( $wp_timezone ) );
 				update_post_meta( $post_id, 'bktsk_yt_all_day_live_start', $bktsk_yt_all_day_live_start_update->format( 'Y-m-d' ) );
 				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_start', $bktsk_yt_all_day_live_start_update->format( 'Y-m-d H:i:s' ) );
 			} else {
@@ -452,7 +454,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 			}
 
 			if ( isset( $_POST['bktsk_yt_all_day_live_end_date'] ) ) {
-				$bktsk_yt_all_day_live_end_update = new DateTime( $_POST['bktsk_yt_all_day_live_end_date'], new DateTimeZone( $wp_timezone ) );
+				$bktsk_yt_all_day_live_end_update = new DateTime( sanitize_text_field( $_POST['bktsk_yt_all_day_live_end_date'] ), new DateTimeZone( $wp_timezone ) );
 				update_post_meta( $post_id, 'bktsk_yt_all_day_live_end', $bktsk_yt_all_day_live_end_update->format( 'Y-m-d' ) );
 				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_due', $bktsk_yt_all_day_live_end_update->modify( '+1 day' )->format( 'Y-m-d H:i:s' ) );
 			} else { //題名未入力の場合
@@ -468,7 +470,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 
 		case 'day_off':
 			if ( isset( $_POST['bktsk_yt_day_off_start_date'] ) ) {
-				$bktsk_yt_day_off_start_update = new DateTime( $_POST['bktsk_yt_day_off_start_date'], new DateTimeZone( $wp_timezone ) );
+				$bktsk_yt_day_off_start_update = new DateTime( sanitize_text_field( $_POST['bktsk_yt_day_off_start_date'] ), new DateTimeZone( $wp_timezone ) );
 				update_post_meta( $post_id, 'bktsk_yt_day_off_start', $bktsk_yt_day_off_start_update->format( 'Y-m-d' ) ); //値を保存
 				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_start', $bktsk_yt_day_off_start_update->format( 'Y-m-d H:i:s' ) );
 			} else {
@@ -477,7 +479,7 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 			}
 
 			if ( isset( $_POST['bktsk_yt_day_off_end_date'] ) ) {
-				$bktsk_yt_day_off_end_update = new DateTime( $_POST['bktsk_yt_day_off_end_date'], new DateTimeZone( $wp_timezone ) );
+				$bktsk_yt_day_off_end_update = new DateTime( sanitize_text_field( $_POST['bktsk_yt_day_off_end_date'] ), new DateTimeZone( $wp_timezone ) );
 				update_post_meta( $post_id, 'bktsk_yt_day_off_end', $bktsk_yt_day_off_end_update->format( 'Y-m-d' ) ); //値を保存
 				update_post_meta( $post_id, 'bktsk_yt_live_frontpage_due', $bktsk_yt_day_off_end_update->modify( '+1 day' )->format( 'Y-m-d H:i:s' ) );
 			} else {
