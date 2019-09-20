@@ -4,7 +4,7 @@ Donate link: https://paypal.me/sasagar
 Tags: schedule, calendar, youtube, live
 Requires at least: 4.3
 Tested up to: 5.2.3
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,8 +23,8 @@ Also iCalendar file can be delivered.  It can be imported with URL to the major 
 ### This plugin can be installed directly from your site.
 
 Log in and navigate to Plugins → Add New.
-Type "BKTSK YouTube Live Scheduler" into the Search and hit Enter.
-Locate the BKTSK YouTube Live Scheduler in the list of search results and click "Install Now".
+Type "BKTSK Live Scheduler" into the Search and hit Enter.
+Locate the BKTSK Live Scheduler in the list of search results and click "Install Now".
 Once installed, click the Activate link.
 
 == Frequently asked questions ==
