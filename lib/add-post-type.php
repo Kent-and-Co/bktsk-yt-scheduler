@@ -600,7 +600,7 @@ function bktsk_yt_live_admin_custom_meta( $post_id ) {
 	if ( ! wp_verify_nonce( $_POST[ "{$slug}_edit_nonce" ], 'quick_edit_action' ) ) {
 		return;
 	}
-	if ( isset( $_REQUEST['bktsk_yt_live_url'] ) ) {
+	if ( isset( $_REQUEST['bktsk_yt_live_url'] ) && ! empty( $_REQUEST['bktsk_yt_live_url'] ) ) {
 		update_post_meta( $post_id, 'bktsk_yt_live_url', esc_url( $_REQUEST['bktsk_yt_live_url'] ) );
 	} else {
 		delete_post_meta( $post_id, 'bktsk_yt_live_url' );
