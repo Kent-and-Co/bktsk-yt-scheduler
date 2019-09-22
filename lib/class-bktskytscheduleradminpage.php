@@ -344,7 +344,7 @@ class BktskYtSchedulerAdminPage {
 	public function print_cal_disp_section_info() {
 		_e( 'Fields of this section will be used for displaying calendar using the shortcode', 'bktsk-live-scheduler' );
 		echo '<br>';
-		_e( 'The short code is [bktsk-live-calendar] .', 'bktsk-live-scheduler' );
+		_e( 'The shortcode is [bktsk-live-calendar] .', 'bktsk-live-scheduler' );
 	}
 
 	/**

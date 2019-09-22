@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: BKTSK Live Scheduler\n"
-"POT-Creation-Date: 2019-09-20 20:17+0900\n"
+"POT-Creation-Date: 2019-09-23 03:57+0900\n"
 "PO-Revision-Date: 2019-09-20 20:16+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,10 +16,12 @@ msgstr ""
 "X-Poedit-WPHeader: bktsk-yt-live-scheduler.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: *.js\n"
 
 #: lib/add-post-type.php:21
 msgctxt "post type general name"
@@ -143,7 +145,7 @@ msgstr ""
 msgid "Live End"
 msgstr ""
 
-#: lib/add-post-type.php:503
+#: lib/add-post-type.php:503 lib/add-post-type.php:579
 msgid "Live URL"
 msgstr ""
 
@@ -164,7 +166,7 @@ msgid "Add new live category"
 msgstr ""
 
 #: lib/class-bktskytscheduleradminpage.php:29
-#: lib/class-bktskytscheduleradminpage.php:46
+#: lib/class-bktskytscheduleradminpage.php:45
 msgid "YouTube Live Scheduler Settings"
 msgstr ""
 
@@ -172,90 +174,154 @@ msgstr ""
 msgid "YT Live Settings"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:72
+#: lib/class-bktskytscheduleradminpage.php:71
 msgid "Slugs"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:80
+#: lib/class-bktskytscheduleradminpage.php:79
 msgid "Live post slug"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:89
+#: lib/class-bktskytscheduleradminpage.php:88
 msgid "Live category slug"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:98
+#: lib/class-bktskytscheduleradminpage.php:97
 msgid "Live iCalendar slug"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:107
+#: lib/class-bktskytscheduleradminpage.php:106
 msgid "iCalendar Info"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:115
+#: lib/class-bktskytscheduleradminpage.php:114
 msgid "iCalendar title"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:124
+#: lib/class-bktskytscheduleradminpage.php:123
 msgid "iCalendar Description"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:133
+#: lib/class-bktskytscheduleradminpage.php:132
 msgid "iCalendar Tags"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:141
+#: lib/class-bktskytscheduleradminpage.php:140
 msgid "Canceled"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:150
+#: lib/class-bktskytscheduleradminpage.php:149
 msgid "Time not fixed"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:159
+#: lib/class-bktskytscheduleradminpage.php:158
 msgid "Day off"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:211
+#: lib/class-bktskytscheduleradminpage.php:167
+msgid "Calendar display settings"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:175
+msgid "Week start"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:231
 msgid ""
 "Fields of this section will be used for URL slugs. All fields will be "
 "urlencoded."
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:213
+#: lib/class-bktskytscheduleradminpage.php:233
 msgid "After changing this section, permalink update is strongly recommended"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:225
+#: lib/class-bktskytscheduleradminpage.php:245
 msgid ""
 "This will be used for post type slug of the lives. \"live_schedule\" is the "
 "default. (When this field is empty.)"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:238
+#: lib/class-bktskytscheduleradminpage.php:258
 msgid ""
 "This will be used for taxonomy slug of the lives. \"live_category\" is the "
 "default. (When this field is empty.)"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:251
+#: lib/class-bktskytscheduleradminpage.php:271
 msgid ""
 "This will be used for iCalendar URL slug. \"bktsk_yt_live\" is the default. "
 "(When this field is empty.)"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:259
+#: lib/class-bktskytscheduleradminpage.php:279
 msgid "Fields of this section will be used on the iCalendar."
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:286
+#: lib/class-bktskytscheduleradminpage.php:306
 msgid ""
 "Fields of this section will be used just before title (VEVENT/SUMMARY) on "
 "the iCalendar."
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:288
+#: lib/class-bktskytscheduleradminpage.php:308
 msgid "When none given, nothing will be added."
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:345
+msgid ""
+"Fields of this section will be used for displaying calendar using the "
+"shortcode"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:347
+msgid "The shortcode is [bktsk-live-calendar] ."
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:356
+msgid "Sunday"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:360
+msgid "Monday"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:35
+#: lib/class-bktskytschedulershortcode.php:42
+msgid "Sun"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:36
+msgid "Mon"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:37
+msgid "Tue"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:38
+msgid "Wed"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:39
+msgid "Thu"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:40
+msgid "Fri"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:41
+msgid "Sat"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:289
+#: lib/class-bktskytschedulershortcode.php:293
+msgid "All day"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:307
+msgid "None"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
