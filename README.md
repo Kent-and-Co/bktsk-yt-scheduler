@@ -1,8 +1,8 @@
-=== BKTSK Live Scheduler ===
+# BKTSK Live Scheduler
 
 To set up custom post type and taxonomy for YouTube Live Schedules.
 
-== Description ==
+## Description
 
 This plugin will set up a custom post type and taxonomy for live schedule like YouTube Live.
 
@@ -10,7 +10,7 @@ On the new post type, you can use original custom field section including type o
 
 Also iCalendar file can be delivered. It can be imported with URL to the major calendar apps (e.g. Google Calendar, Apple Calendar App and so on).
 
-== Installation ==
+## Installation
 
 ### This plugin can be installed directly from your site.
 
@@ -19,7 +19,7 @@ Type "BKTSK Live Scheduler" into the Search and hit Enter.
 Locate the BKTSK Live Scheduler in the list of search results and click "Install Now".  
 Once installed, click the Activate link.
 
-== Frequently asked questions ==
+## Frequently asked questions
 
 ### What can be done with this plugin?
 
@@ -44,11 +44,11 @@ You can use any WordPress tags and functions for the post type and taxonomy. Her
 - post type slug: bktskytlive
 - taxonomy slug: bktsk-yt-live-taxonomy
 
-== Screenshots ==
+## Screenshots
 
 Now In Progress...
 
-== Changelog ==
+## Changelog
 
 ### 0.2.0
 
@@ -81,6 +81,6 @@ Release automation.
 
 The first release.
 
-== Upgrade notice ==
+## Upgrade notice
 
 none.
