@@ -40,3 +40,4 @@ require_once dirname( __FILE__ ) . '/lib/add-taxonomy.php'; // for custom taxono
 require_once dirname( __FILE__ ) . '/lib/make-ics.php'; // for ics response
 require_once dirname( __FILE__ ) . '/lib/get-post-type.php'; // for post data from the post type
 require_once dirname( __FILE__ ) . '/lib/class-bktskytscheduleradminpage.php'; // for Admin Menus
+require_once dirname( __FILE__ ) . '/lib/class-bktskytschedulershortcode.php'; // for Shortcode

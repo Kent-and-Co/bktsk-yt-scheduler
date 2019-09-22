@@ -42,7 +42,6 @@ class BktskYtSchedulerAdminPage {
 		$this->options = get_option( 'bktsk_yt_scheduler_options' );
 		?>
 		<div class="wrap">
-			<?php screen_icon(); ?>
 			<h2><?php _e( 'YouTube Live Scheduler Settings', 'bktsk-live-scheduler' ); ?></h2>
 			<form method="post" action="options.php">
 			<?php
@@ -161,6 +160,23 @@ class BktskYtSchedulerAdminPage {
 			'bktsk-yt-scheduler-admin',
 			'bktsk-yt-scheduler-ical-tags'
 		);
+
+		// add section for calendar start day
+		add_settings_section(
+			'bktsk-yt-scheduler-cal-disp', // ID
+			__( 'Calendar display settings', 'bktsk-live-scheduler' ), // Title
+			array( $this, 'print_cal_disp_section_info' ), // Callback
+			'bktsk-yt-scheduler-admin' // Page
+		);
+
+		// add field for tag of canceled events
+		add_settings_field(
+			'wod_start', // ID
+			__( 'Week start', 'bktsk-live-scheduler' ), // Title
+			array( $this, 'calendar_start_callback' ), // Callback
+			'bktsk-yt-scheduler-admin', // Page
+			'bktsk-yt-scheduler-cal-disp' // Section
+		);
 	}
 
 	/**
@@ -200,6 +216,10 @@ class BktskYtSchedulerAdminPage {
 
 		if ( isset( $input['dayoff_tag'] ) ) {
 			$new_input['dayoff_tag'] = $input['dayoff_tag'];
+		}
+
+		if ( isset( $input['wod_start'] ) ) {
+			$new_input['wod_start'] = $input['wod_start'];
 		}
 		return $new_input;
 	}
@@ -316,6 +336,31 @@ class BktskYtSchedulerAdminPage {
 			'<input type="text" id="dayoff_tag" name="bktsk_yt_scheduler_options[dayoff_tag]" value="%s">',
 			isset( $this->options['dayoff_tag'] ) ? esc_attr( $this->options['dayoff_tag'] ) : ''
 		);
+	}
+
+	/**
+	 * Print the Section text
+	 */
+	public function print_cal_disp_section_info() {
+		_e( 'Fields of this section will be used for displaying calendar using the shortcode', 'bktsk-live-scheduler' );
+		echo '<br>';
+		_e( 'The short code is [bktsk-live-calendar] .', 'bktsk-live-scheduler' );
+	}
+
+	/**
+	 * Get the settings option array and print one of its values
+	 */
+	public function calendar_start_callback() {
+		print( '<select id="wod_start" name="bktsk_yt_scheduler_options[wod_start]">' );
+		printf(
+			'<option value="0"%s>' . __( 'Sunday', 'bktsk-live-scheduler' ) . '</option>',
+			0 == $this->options['wod_start'] ? ' selected' : ''
+		);
+		printf(
+			'<option value="1"%s>' . __( 'Monday', 'bktsk-live-scheduler' ) . '</option>',
+			1 == $this->options['wod_start'] ? ' selected' : ''
+		);
+		print( '</select>' );
 	}
 }
 

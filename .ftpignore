@@ -10,3 +10,4 @@ local-assets
 .gitignore
 .svnivnore
 *.zip
+/node_modules
