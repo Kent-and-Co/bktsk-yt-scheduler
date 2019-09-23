@@ -4,7 +4,7 @@ Donate link: https://paypal.me/sasagar
 Tags: schedule, calendar, youtube, live
 Requires at least: 4.3
 Tested up to: 5.2.3
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,8 +36,14 @@ The iCalendar file would be delivered using specified url (you can change the sl
 
 ### Is this able to show the calendar?
 
-I'm sorry this function is now in progress.  Please wait for that!
-Instead of this feature, you can use iframe of Google Calendar.  Add your iCalendar with the URL and get the code of iframe on the setting page of the Google Calendar.  Now you can put the calendar on any other space!!
+At last, we got the shortcode to show the calendar.
+Use this shortcode to show the one.
+```
+[bktsk-live-calendar]
+```
+
+Still in progress for below:
+- Pagenation (next month, last month) when the shortcode is in page.
 
 ### Donation?
 
@@ -58,8 +64,11 @@ Now In Progress...
 
 == Changelog ==
 
+### 0.3.1
+Fixing FAQ.
+
 ### 0.3.0
-Hooray! Now we got the shortcode to show the calendar.  
+Hooray! Now we got the shortcode to show the calendar.
 (Only this month, no paging.)
 
 ### 0.2.0
