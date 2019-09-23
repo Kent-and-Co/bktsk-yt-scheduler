@@ -1,6 +1,8 @@
 $sunday: #f00;
 $saturday: #00f;
 $bg: #ffe;
+$today: #dfd;
+$past: #ddd;
 
 .bktsk-live-calendar {
   display: table;
@@ -18,6 +20,14 @@ $bg: #ffe;
     .day {
       display: table-cell;
       border: solid 1px #999;
+
+      &.today {
+        background-color: $today;
+      }
+
+      &.past {
+        background-color: $past;
+      }
     }
 
     .wday-0,
