@@ -4,7 +4,7 @@ Donate link: https://paypal.me/sasagar
 Tags: schedule, calendar, youtube, live
 Requires at least: 4.3
 Tested up to: 5.2.3
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,10 @@ You can use any WordPress tags and functions for the post type and taxonomy.  He
 Now In Progress...
 
 == Changelog ==
+
+### 0.3.0
+Hooray! Now we got the shortcode to show the calendar.  
+(Only this month, no paging.)
 
 ### 0.2.0
 Enable quick edit for Live URL.

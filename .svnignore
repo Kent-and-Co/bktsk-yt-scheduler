@@ -7,3 +7,6 @@ README.md
 *.zip
 assets
 node_modules
+.stylelintrc.js
+package.json
+package-lock.json

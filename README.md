@@ -50,6 +50,11 @@ Now In Progress...
 
 ## Changelog
 
+### 0.3.0
+
+Hooray! Now we got the shortcode to show the calendar.  
+(Only this month, no paging.)
+
 ### 0.2.0
 
 Enable quick edit for Live URL.
