@@ -24,13 +24,13 @@ class BktskYtSchedulerShortcode {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'calendar_init' ) );
 
-		add_shortcode( 'bktsk_live_calendar', array( $this, 'show_calendar' ) );
+		add_shortcode( 'bktsk-live-calendar', array( $this, 'show_calendar' ) );
 	}
 
 	public function calendar_init() {
 		global $post;
 
-		if ( has_shortcode( $post->post_content, 'bktsk_live_calendar' ) ) {
+		//	if ( has_shortcode( $post->post_content, 'bktsk-live-calendar' ) ) {
 			$this->weekdays = array(
 				__( 'Sun', 'bktsk-live-scheduler' ),
 				__( 'Mon', 'bktsk-live-scheduler' ),
@@ -42,19 +42,26 @@ class BktskYtSchedulerShortcode {
 				__( 'Sun', 'bktsk-live-scheduler' ),
 			);
 
-			wp_register_style( 'bktsk-live-calendar', $this->style_url . 'calendar/style.min.css' );
-			wp_enqueue_style( 'bktsk-live-calendar' );
-		}
+			wp_register_style( 'bktsk-live-calendar-css', $this->style_url . 'calendar/style.min.css' );
+			wp_enqueue_style( 'bktsk-live-calendar-css' );
+		//	}
 	}
 
 	public function show_calendar() {
 		if ( ! is_admin() ) {
-			echo '<div class="bktsk-live-calendar">';
+
+			ob_start();
+			print( '<div class="bktsk-live-calendar">' );
 			self::show_weekdays( $this->week_start );
 			self::get_lmonth_dates();
 			self::get_month_dates();
 			self::get_nmonth_dates();
-			echo '</div>';
+			print( '</div>' );
+
+			$response = ob_get_contents();
+			ob_get_clean();
+
+			return $response;
 		}
 	}
 
@@ -63,7 +70,7 @@ class BktskYtSchedulerShortcode {
 		<div class="row weekday">
 			<?php
 			for ( $i = $start; $i < $start + 7; $i++ ) {
-				echo '<div class="day wday-' . $i . '"><div class="day-week">' . $this->weekdays[ $i ] . '</div></div>';
+				print( '<div class="day wday-' . $i . '"><div class="day-week">' . $this->weekdays[ $i ] . '</div></div>' );
 			}
 			?>
 		</div>
@@ -81,10 +88,10 @@ class BktskYtSchedulerShortcode {
 		for ( $i = 0; $i <= $diff; $i++ ) {
 			$flag = true;
 
-			echo '<div class="day this-month wday-' . $echo_date->format( 'w' ) . '">';
-			echo '<div class="date-num">' . $echo_date->format( 'd' ) . '</div>';
+			print( '<div class="day this-month wday-' . $echo_date->format( 'w' ) . '">' );
+			print( '<div class="date-num">' . $echo_date->format( 'd' ) . '</div>' );
 			self::get_the_live_schedule( $echo_date->format( 'Y-m-d' ) );
-			echo '</div>';
+			print( '</div>' );
 
 			if ( 0 == $this->week_start ) {
 				$echo_weekday = $echo_date->format( 'w' );
@@ -99,7 +106,7 @@ class BktskYtSchedulerShortcode {
 			}
 
 			if ( ! $flag ) {
-				echo '</div><div class="row date">';
+				print( '</div><div class="row date">' );
 			}
 
 			$echo_date->modify( '+1 day' );
@@ -107,7 +114,7 @@ class BktskYtSchedulerShortcode {
 	}
 
 	private function get_lmonth_dates() {
-		echo '<div class="row date">';
+		print( '<div class="row date">' );
 
 		$month      = sprintf( '%02d', $this->this_month );
 		$start_date = new DateTime( 'first day of ' . $this->this_year . '-' . $month );
@@ -149,13 +156,13 @@ class BktskYtSchedulerShortcode {
 			}
 
 			for ( $i = 0; $i <= $diff; $i++ ) {
-				echo '<div class="day last-month wday-' . $echo_date->format( 'w' ) . '">';
-				echo '<div class="date-num">' . $echo_date->format( 'd' ) . '</div>';
+				print( '<div class="day last-month wday-' . $echo_date->format( 'w' ) . '">' );
+				print( '<div class="date-num">' . $echo_date->format( 'd' ) . '</div>' );
 				self::get_the_live_schedule( $echo_date->format( 'Y-m-d' ) );
-				echo '</div>';
+				print( '</div>' );
 
 				if ( $flag2 ) {
-					echo '</div><div class="row date">';
+					print( '</div><div class="row date">' );
 				}
 
 				$echo_date->modify( '+1 day' );
@@ -190,10 +197,10 @@ class BktskYtSchedulerShortcode {
 			$diff      = 6 + $this->week_start - $start_weekday;
 
 			for ( $i = 0; $i <= $diff; $i++ ) {
-				echo '<div class="day next-month wday-' . $echo_date->format( 'w' ) . '">';
-				echo '<div class="date-num">' . $echo_date->format( 'd' ) . '</div>';
+				print( '<div class="day next-month wday-' . $echo_date->format( 'w' ) . '">' );
+				print( '<div class="date-num">' . $echo_date->format( 'd' ) . '</div>' );
 				self::get_the_live_schedule( $echo_date->format( 'Y-m-d' ) );
-				echo '</div>';
+				print( '</div>' );
 
 				$flag2 = false;
 				if ( 0 == $this->week_start ) {
@@ -212,7 +219,7 @@ class BktskYtSchedulerShortcode {
 			}
 		}
 
-		echo '</div>';
+		print( '</div>' );
 	}
 
 	private function get_the_live_schedule( $date ) {
@@ -295,18 +302,19 @@ class BktskYtSchedulerShortcode {
 						break;
 				}
 
-				echo '<a href="' . get_permalink( $postid ) . '">';
-				echo '<div class="live' . $term_class . $canceled_class . '">';
-				echo '<div class="time">' . $time_text . '</div>';
-				echo '<div class="title">' . get_the_title() . '</div>';
-				echo '</div>';
-				echo '</a>';
+				print( '<a href="' . get_permalink( $postid ) . '">' );
+				print( '<div class="live' . $term_class . $canceled_class . '">' );
+				print( '<div class="time">' . $time_text . '</div>' );
+				print( '<div class="title">' . get_the_title() . '</div>' );
+				print( '</div>' );
+				print( '</a>' );
 			}
 		} else {
-			echo '<div class="live none">';
+			print( '<div class="live none">' );
 			_e( 'None', 'bktsk-live-scheduler' );
-			echo '</div>';
+			print( '</div>' );
 		}
+		wp_reset_postdata();
 	}
 }
 
