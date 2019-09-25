@@ -42,17 +42,26 @@ class BktskYtSchedulerShortcode {
 		add_action( 'wp_enqueue_scripts', array( $this, 'calendar_init' ) );
 
 		add_shortcode( 'bktsk-live-calendar', array( $this, 'show_calendar' ) );
-		add_shortcode( 'bktsk-live-calendar-test', array( $this, 'show_calendar' ) );
+		add_shortcode( 'bktsk-live-calendar-test', array( $this, 'show_calendar_test' ) );
+
+		// add_filter( 'style_loader_tag', array( $this, 'bktsk_live_calendar_difercss' ) );
+
 	}
 
 	public function calendar_init() {
 		global $post;
 
 		//	if ( has_shortcode( $post->post_content, 'bktsk-live-calendar' ) ) {
-			wp_register_style( 'bktsk-live-calendar-css', $this->style_url . 'calendar/style.min.css' );
-			wp_enqueue_style( 'bktsk-live-calendar-css' );
+			wp_register_style( 'bktsk-live-calendar', $this->style_url . 'calendar/style.min.css' );
+			wp_enqueue_style( 'bktsk-live-calendar' );
 		//	}
 	}
+	/*
+	public function bktsk_live_calendar_difercss( $tag ) {
+		$tag_pre = preg_replace( "/rel='stylesheet' id='bktsk-live-calendar-css'/", "rel='preload' as='style' id='bktsk-live-calendar-css'", $tag );
+		return $tag;
+	}
+	*/
 
 	private function show_weekdays( $start = 0 ) {
 		?>
@@ -81,6 +90,36 @@ class BktskYtSchedulerShortcode {
 			ob_get_clean();
 
 			return $response;
+		}
+	}
+
+	public function show_calendar_test( $attr ) {
+		if ( ! is_admin() ) {
+
+			self::set_attr( $attr );
+
+			self::get_calendar_span();
+			self::get_lives_between();
+			ob_start();
+			print( '<div class="bktsk-live-calendar">' );
+			self::show_weekdays( $this->week_start );
+			self::show_dates();
+			print( '</div>' );
+
+			$response = ob_get_contents();
+			ob_get_clean();
+
+			return $response;
+		}
+	}
+
+	private function set_attr( $attr ) {
+		if ( isset( $attr['year'] ) ) {
+			$this->this_year = $attr['year'];
+		}
+
+		if ( isset( $attr['month'] ) ) {
+			$this->this_month = $attr['month'];
 		}
 	}
 
@@ -243,12 +282,15 @@ class BktskYtSchedulerShortcode {
 
 				$postid = get_the_ID();
 
-				$strtime = get_post_meta( $postid, 'bktsk_yt_live_frontpage_start', true );
-				$time    = new DateTime( $strtime, new DateTimeZone( 'UTC' ) );
-				$time->setTimezone( $timezone );
+				$strstarttime = get_post_meta( $postid, 'bktsk_yt_live_frontpage_start', true );
+				$starttime    = new DateTime( $strstarttime, $timezone );
 
-				if ( $time >= $proc && $time < $end ) {
-					$live_type      = get_post_meta( $postid, 'bktsk_yt_live_type', true );
+				$strendtime = get_post_meta( $postid, 'bktsk_yt_live_frontpage_due', true );
+				$endtime    = new DateTime( $strendtime, $timezone );
+
+				$live_type = get_post_meta( $postid, 'bktsk_yt_live_type', true );
+
+				if ( $starttime >= $proc && $starttime < $end || $starttime < $proc && $proc < $endtime && false !== strpos( $live_type, 'day_' ) ) {
 					$time_text      = '';
 					$canceled_class = '';
 
@@ -298,7 +340,7 @@ class BktskYtSchedulerShortcode {
 	}
 
 	private function make_each_live_block( $postid, $term_class, $canceled_class, $time_text ) {
-		$response .= '<a href="' . get_permalink( $postid ) . '">'
+		$response = '<a href="' . get_permalink( $postid ) . '">'
 		. '<div class="live' . $term_class . $canceled_class . '">'
 		. '<div class="time">' . $time_text . '</div>'
 		. '<div class="title">' . get_the_title( $postid ) . '</div>'

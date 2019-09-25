@@ -487,8 +487,8 @@ function bktsk_yt_scheduler_save_fields( $post_id ) {
 				delete_post_meta( $post_id, 'bktsk_yt_day_off_end' );
 			}
 
-			delete_post_meta( $post_id, 'bktsk_yt_live_start_date' );
-			delete_post_meta( $post_id, 'bktsk_yt_live_end_date' );
+			delete_post_meta( $post_id, 'bktsk_yt_live_start' );
+			delete_post_meta( $post_id, 'bktsk_yt_live_end' );
 			delete_post_meta( $post_id, 'bktsk_yt_all_day_live_start' );
 			delete_post_meta( $post_id, 'bktsk_yt_all_day_live_end' );
 			break;
@@ -509,9 +509,9 @@ function bktsk_yt_live_admin_custom_column( $bktsk_yt_live_column, $post_id ) {
 	$wp_timezone = get_option( 'timezone_string' );
 	switch ( $bktsk_yt_live_column ) {
 		case 'bktsk_yt_live_start': // ID
-			if ( null != get_post_meta( $post_id, 'bktsk_yt_live_start', true ) ) {
+			if ( null != get_post_meta( $post_id, 'bktsk_yt_live_start', true ) || null != get_post_meta( $post_id, 'canceled_bktsk_yt_live_start', true ) ) {
 				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_live_start', true );
-			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_all_day_live_start', true ) ) {
+			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_all_day_live_start', true ) || null != get_post_meta( $post_id, 'canceled_bktsk_yt_all_day_live_start', true ) ) {
 				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_all_day_live_start', true );
 			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_day_off_start', true ) ) {
 				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_day_off_start', true );
@@ -519,9 +519,9 @@ function bktsk_yt_live_admin_custom_column( $bktsk_yt_live_column, $post_id ) {
 			break;
 
 		case 'bktsk_yt_live_end':
-			if ( null != get_post_meta( $post_id, 'bktsk_yt_live_end', true ) ) {
+			if ( null != get_post_meta( $post_id, 'bktsk_yt_live_end', true ) || null != get_post_meta( $post_id, 'canceled_bktsk_yt_live_end', true ) ) {
 				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_live_end', true );
-			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_all_day_live_end', true ) ) {
+			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_all_day_live_end', true ) || null != get_post_meta( $post_id, 'canceled_bktsk_yt_all_day_live_end', true ) ) {
 				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_all_day_live_end', true );
 			} elseif ( null != get_post_meta( $post_id, 'bktsk_yt_day_off_end', true ) ) {
 				$bktsk_yt_live_post_meta = get_post_meta( $post_id, 'bktsk_yt_day_off_end', true );
@@ -533,7 +533,7 @@ function bktsk_yt_live_admin_custom_column( $bktsk_yt_live_column, $post_id ) {
 			break;
 	}
 
-	if ( $bktsk_yt_live_post_meta ) {
+	if ( isset( $bktsk_yt_live_post_meta ) ) {
 		if ( 'live_schedule' === get_post_meta( $post_id, 'bktsk_yt_live_type', true ) ) {
 			$bktsk_yt_live_time_format = 'Y-m-d H:i';
 		} else {
