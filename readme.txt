@@ -42,8 +42,16 @@ Use this shortcode to show the one.
 [bktsk-live-calendar]
 ```
 
-Still in progress for below:
-- Pagenation (next month, last month) when the shortcode is in page.
+If you put this shortcode in the page, the pagenation will be automatically enabled.
+
+Also if you need to keep the exact month calendar to show, you can use the shortcode like below.
+
+```
+[bktsk-live-calendar year=2020 month=5]
+```
+
+If you set only month option, the year will be this year (as same as now).
+Of course you can set only year option, the month will be this month.
 
 ### Donation?
 
