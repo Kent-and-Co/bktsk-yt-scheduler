@@ -4,6 +4,27 @@ $bg: #ffe;
 $today: #dfd;
 $past: #ddd;
 
+.bktsk-live-calendar-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  .back {
+    flex: 1;
+    text-align: left;
+  }
+
+  .center {
+    flex: 5;
+    text-align: center;
+  }
+
+  .next {
+    flex: 1;
+    text-align: right;
+  }
+}
+
 .bktsk-live-calendar {
   display: table;
   border-collapse: collapse;

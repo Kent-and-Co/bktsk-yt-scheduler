@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BKTSK Live Scheduler\n"
-"POT-Creation-Date: 2019-09-23 03:57+0900\n"
-"PO-Revision-Date: 2019-09-23 03:57+0900\n"
+"POT-Creation-Date: 2019-09-27 18:07+0900\n"
+"PO-Revision-Date: 2019-09-27 18:09+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -224,7 +224,11 @@ msgstr "カレンダー表示設定"
 msgid "Week start"
 msgstr "週の始め"
 
-#: lib/class-bktskytscheduleradminpage.php:231
+#: lib/class-bktskytscheduleradminpage.php:184
+msgid "Calendar header month format"
+msgstr "カレンダーヘッダーの月表示フォーマット"
+
+#: lib/class-bktskytscheduleradminpage.php:248
 msgid ""
 "Fields of this section will be used for URL slugs. All fields will be "
 "urlencoded."
@@ -232,13 +236,13 @@ msgstr ""
 "このセクションのフィールドは、URLのスラッグとして利用されます。すべての"
 "フィールドはURLエンコードされて保存されます。"
 
-#: lib/class-bktskytscheduleradminpage.php:233
+#: lib/class-bktskytscheduleradminpage.php:250
 msgid "After changing this section, permalink update is strongly recommended"
 msgstr ""
 "このセクションで変更を行った後は、パーマリンク設定の画面で変更を保存する事を"
 "強くおすすめします"
 
-#: lib/class-bktskytscheduleradminpage.php:245
+#: lib/class-bktskytscheduleradminpage.php:262
 msgid ""
 "This will be used for post type slug of the lives. \"live_schedule\" is the "
 "default. (When this field is empty.)"
@@ -246,7 +250,7 @@ msgstr ""
 "ライブ用の投稿タイプに使われるスラッグです。デフォルトは \"live_schedule\" "
 "です。（空欄にした場合）"
 
-#: lib/class-bktskytscheduleradminpage.php:258
+#: lib/class-bktskytscheduleradminpage.php:275
 msgid ""
 "This will be used for taxonomy slug of the lives. \"live_category\" is the "
 "default. (When this field is empty.)"
@@ -254,7 +258,7 @@ msgstr ""
 "ライブ用の分類に使われるスラッグです。デフォルトは \"live_category\" です。"
 "（空欄にした場合）"
 
-#: lib/class-bktskytscheduleradminpage.php:271
+#: lib/class-bktskytscheduleradminpage.php:288
 msgid ""
 "This will be used for iCalendar URL slug. \"bktsk_yt_live\" is the default. "
 "(When this field is empty.)"
@@ -262,11 +266,11 @@ msgstr ""
 "ライブのiCalendarアクセス用に使われるスラッグです。デフォルトは "
 "\"bktsk_yt_live\" です。（空欄にした場合）"
 
-#: lib/class-bktskytscheduleradminpage.php:279
+#: lib/class-bktskytscheduleradminpage.php:296
 msgid "Fields of this section will be used on the iCalendar."
 msgstr "このセクションのフィールドは、iCalendarの情報として使われます。"
 
-#: lib/class-bktskytscheduleradminpage.php:306
+#: lib/class-bktskytscheduleradminpage.php:323
 msgid ""
 "Fields of this section will be used just before title (VEVENT/SUMMARY) on "
 "the iCalendar."
@@ -274,64 +278,84 @@ msgstr ""
 "このセクションのフィールドは、iCalendarのタイトル部分(VEVENT/SUMMARY)の直前"
 "に追加されます。"
 
-#: lib/class-bktskytscheduleradminpage.php:308
+#: lib/class-bktskytscheduleradminpage.php:325
 msgid "When none given, nothing will be added."
 msgstr "何も指定しなければ、何も追加されません。"
 
-#: lib/class-bktskytscheduleradminpage.php:345
+#: lib/class-bktskytscheduleradminpage.php:362
 msgid ""
 "Fields of this section will be used for displaying calendar using the "
 "shortcode"
 msgstr ""
 "このセクションはショートコードを利用したカレンダーの表示に利用されます"
 
-#: lib/class-bktskytscheduleradminpage.php:347
+#: lib/class-bktskytscheduleradminpage.php:364
 msgid "The shortcode is [bktsk-live-calendar] ."
 msgstr "ショートコードは [bktsk-live-calendar] です。"
 
-#: lib/class-bktskytscheduleradminpage.php:356
+#: lib/class-bktskytscheduleradminpage.php:373
 msgid "Sunday"
 msgstr "日曜日"
 
-#: lib/class-bktskytscheduleradminpage.php:360
+#: lib/class-bktskytscheduleradminpage.php:377
 msgid "Monday"
 msgstr "月曜日"
 
-#: lib/class-bktskytschedulershortcode.php:35
-#: lib/class-bktskytschedulershortcode.php:42
+#: lib/class-bktskytscheduleradminpage.php:392
+msgid ""
+"This will be used for the header of calendar displayed by shortcode. The "
+"format is as same as WordPress date format."
+msgstr ""
+"この項目はショートコードを利用したカレンダー表示でヘッダーに利用されます。"
+"フォーマット表記はWordPressの日付フォーマットと同じです。"
+
+#: lib/class-bktskytscheduleradminpage.php:394
+msgid "If none given, this will the format will be <code>Y-m</code>."
+msgstr "何も指定しない場合には <code>Y-m</code> になります。"
+
+#: lib/class-bktskytschedulershortcode.php:32
+#: lib/class-bktskytschedulershortcode.php:39
 msgid "Sun"
 msgstr "日"
 
-#: lib/class-bktskytschedulershortcode.php:36
+#: lib/class-bktskytschedulershortcode.php:33
 msgid "Mon"
 msgstr "月"
 
-#: lib/class-bktskytschedulershortcode.php:37
+#: lib/class-bktskytschedulershortcode.php:34
 msgid "Tue"
 msgstr "火"
 
-#: lib/class-bktskytschedulershortcode.php:38
+#: lib/class-bktskytschedulershortcode.php:35
 msgid "Wed"
 msgstr "水"
 
-#: lib/class-bktskytschedulershortcode.php:39
+#: lib/class-bktskytschedulershortcode.php:36
 msgid "Thu"
 msgstr "木"
 
-#: lib/class-bktskytschedulershortcode.php:40
+#: lib/class-bktskytschedulershortcode.php:37
 msgid "Fri"
 msgstr "金"
 
-#: lib/class-bktskytschedulershortcode.php:41
+#: lib/class-bktskytschedulershortcode.php:38
 msgid "Sat"
 msgstr "土"
 
-#: lib/class-bktskytschedulershortcode.php:289
-#: lib/class-bktskytschedulershortcode.php:293
+#: lib/class-bktskytschedulershortcode.php:234
+msgid "Previous"
+msgstr "前の月"
+
+#: lib/class-bktskytschedulershortcode.php:246
+msgid "Next"
+msgstr "次の月"
+
+#: lib/class-bktskytschedulershortcode.php:359
+#: lib/class-bktskytschedulershortcode.php:363
 msgid "All day"
 msgstr "終日"
 
-#: lib/class-bktskytschedulershortcode.php:307
+#: lib/class-bktskytschedulershortcode.php:377
 msgid "None"
 msgstr "なし"
 

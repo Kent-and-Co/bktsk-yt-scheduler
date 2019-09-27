@@ -42,7 +42,9 @@ class BktskYtSchedulerShortcode {
 		add_action( 'wp_enqueue_scripts', array( $this, 'calendar_init' ) );
 
 		add_shortcode( 'bktsk-live-calendar', array( $this, 'show_calendar' ) );
-		add_shortcode( 'bktsk-live-calendar-test', array( $this, 'show_calendar_test' ) );
+		//add_shortcode( 'bktsk-live-calendar-test', array( $this, 'show_calendar' ) );
+
+		add_filter( 'query_vars', array( $this, 'add_query_vars_filter' ) );
 
 		// add_filter( 'style_loader_tag', array( $this, 'bktsk_live_calendar_difercss' ) );
 
@@ -52,7 +54,8 @@ class BktskYtSchedulerShortcode {
 		global $post;
 
 		//	if ( has_shortcode( $post->post_content, 'bktsk-live-calendar' ) ) {
-			wp_register_style( 'bktsk-live-calendar', $this->style_url . 'calendar/style.min.css' );
+			$version = filemtime( plugin_dir_path( __FILE__ ) . '../style/calendar/style.min.css' );
+			wp_register_style( 'bktsk-live-calendar', $this->style_url . 'calendar/style.min.css', $version );
 			wp_enqueue_style( 'bktsk-live-calendar' );
 		//	}
 	}
@@ -62,6 +65,12 @@ class BktskYtSchedulerShortcode {
 		return $tag;
 	}
 	*/
+
+	public function add_query_vars_filter( $vars ) {
+		$vars[] = 'live_year';
+		$vars[] = 'live_month';
+		return $vars;
+	}
 
 	private function show_weekdays( $start = 0 ) {
 		?>
@@ -75,36 +84,26 @@ class BktskYtSchedulerShortcode {
 		<?php
 	}
 
-	public function show_calendar() {
+	public function show_calendar( $attr ) {
 		if ( ! is_admin() ) {
 
-			self::get_calendar_span();
-			self::get_lives_between();
-			ob_start();
-			print( '<div class="bktsk-live-calendar">' );
-			self::show_weekdays( $this->week_start );
-			self::show_dates();
-			print( '</div>' );
-
-			$response = ob_get_contents();
-			ob_get_clean();
-
-			return $response;
-		}
-	}
-
-	public function show_calendar_test( $attr ) {
-		if ( ! is_admin() ) {
-
-			self::set_attr( $attr );
+			if ( isset( $attr['year'] ) && isset( $attr['month'] ) ) {
+				self::set_attr( $attr );
+			} else {
+				self::set_live_month();
+			}
 
 			self::get_calendar_span();
-			self::get_lives_between();
+
 			ob_start();
-			print( '<div class="bktsk-live-calendar">' );
+			self::show_header();
+
+			self::get_lives_between();
+
+			print( '<section class="bktsk-live-calendar">' );
 			self::show_weekdays( $this->week_start );
 			self::show_dates();
-			print( '</div>' );
+			print( '</section>' );
 
 			$response = ob_get_contents();
 			ob_get_clean();
@@ -120,6 +119,15 @@ class BktskYtSchedulerShortcode {
 
 		if ( isset( $attr['month'] ) ) {
 			$this->this_month = $attr['month'];
+		}
+	}
+
+	private function set_live_month() {
+		if ( is_page() ) {
+			if ( get_query_var( 'live_year', false ) && get_query_var( 'live_month', false ) ) {
+				$this->this_year  = get_query_var( 'live_year', false );
+				$this->this_month = get_query_var( 'live_month', false );
+			}
 		}
 	}
 
@@ -209,6 +217,38 @@ class BktskYtSchedulerShortcode {
 		$the_query   = new WP_Query( $args );
 		$this->query = clone $the_query;
 		wp_reset_postdata();
+	}
+
+	private function show_header() {
+		$tmp   = new DateTime( $this->this_year . '-' . $this->this_month . '-01' );
+		$tmp_l = clone $tmp;
+		$tmp_l->modify( 'first day of last month' );
+		$tmp_n = clone $tmp;
+		$tmp_n->modify( 'first day of next month' );
+
+		print( '<div class="bktsk-live-calendar-header">' );
+
+		if ( is_page() && ! is_front_page() ) {
+			print( '<div class="back">' );
+			print( '<a href="' . get_the_permalink() . '?live_year=' . $tmp_l->format( 'Y' ) . '&live_month=' . $tmp_l->format( 'n' ) . '">' );
+			_e( 'Previous', 'bktsk-live-scheduler' );
+			print( '</a>' );
+			print( '</div>' );
+		}
+
+		print( '<div class="center">' );
+		print( '<h2>' . $tmp->format( $this->options['cal_month_format'] ) . '</h2>' );
+		print( '</div>' );
+
+		if ( is_page() && ! is_front_page() ) {
+			print( '<div class="next">' );
+			print( '<a href="' . get_the_permalink() . '?live_year=' . $tmp_n->format( 'Y' ) . '&live_month=' . $tmp_n->format( 'n' ) . '">' );
+			_e( 'Next', 'bktsk-live-scheduler' );
+			print( '</a>' );
+			print( '</div>' );
+		}
+
+		print( '</div>' );
 	}
 
 	private function show_dates() {

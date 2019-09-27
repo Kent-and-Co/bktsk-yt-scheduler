@@ -177,6 +177,15 @@ class BktskYtSchedulerAdminPage {
 			'bktsk-yt-scheduler-admin', // Page
 			'bktsk-yt-scheduler-cal-disp' // Section
 		);
+
+		// add field for calendar header format
+		add_settings_field(
+			'cal_month_format', // ID
+			__( 'Calendar header month format', 'bktsk-live-scheduler' ), // Title
+			array( $this, 'calendar_header_month_callback' ), // Callback
+			'bktsk-yt-scheduler-admin', // Page
+			'bktsk-yt-scheduler-cal-disp' // Section
+		);
 	}
 
 	/**
@@ -220,6 +229,14 @@ class BktskYtSchedulerAdminPage {
 
 		if ( isset( $input['wod_start'] ) ) {
 			$new_input['wod_start'] = $input['wod_start'];
+		}
+
+		if ( isset( $input['cal_month_format'] ) ) {
+			if ( ! empty( $input['cal_month_format'] ) ) {
+				$new_input['cal_month_format'] = $input['cal_month_format'];
+			} else {
+				$new_input['cal_month_format'] = 'Y-m';
+			}
 		}
 		return $new_input;
 	}
@@ -361,6 +378,21 @@ class BktskYtSchedulerAdminPage {
 			1 == $this->options['wod_start'] ? ' selected' : ''
 		);
 		print( '</select>' );
+	}
+
+	/**
+	 * Get the settings option array and print one of its values
+	 */
+	public function calendar_header_month_callback() {
+		printf(
+			'<input type="text" id="cal_month_format" name="bktsk_yt_scheduler_options[cal_month_format]" value="%s">',
+			isset( $this->options['cal_month_format'] ) ? esc_attr( $this->options['cal_month_format'] ) : ''
+		);
+		echo '<div class="bktsk-yt-notes">';
+		_e( 'This will be used for the header of calendar displayed by shortcode. The format is as same as WordPress date format.', 'bktsk-live-scheduler' );
+		echo '<br>';
+		_e( 'If none given, this will the format will be <code>Y-m</code>.', 'bktsk-live-scheduler' );
+		echo '</div>';
 	}
 }
 

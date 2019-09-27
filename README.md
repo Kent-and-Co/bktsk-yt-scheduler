@@ -14,7 +14,7 @@ Also iCalendar file can be delivered. It can be imported with URL to the major c
 
 ### This plugin can be installed directly from your site.
 
-Log in and navigate to Plugins â†’ Add New.  
+Log in and navigate to Plugins -> Add New.  
 Type "BKTSK Live Scheduler" into the Search and hit Enter.  
 Locate the BKTSK Live Scheduler in the list of search results and click "Install Now".  
 Once installed, click the Activate link.
@@ -57,6 +57,11 @@ You can use any WordPress tags and functions for the post type and taxonomy. Her
 Now In Progress...
 
 ## Changelog
+
+### 0.4.0
+
+Enable month pagenation when the shortcode is on the page.  
+(This feature is enabled on page only, not for post or any post type.)
 
 ### 0.3.1
 

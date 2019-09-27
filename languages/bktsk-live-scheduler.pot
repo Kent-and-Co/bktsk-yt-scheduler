@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: BKTSK Live Scheduler\n"
-"POT-Creation-Date: 2019-09-23 03:57+0900\n"
+"POT-Creation-Date: 2019-09-27 18:07+0900\n"
 "PO-Revision-Date: 2019-09-20 20:16+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -226,101 +226,123 @@ msgstr ""
 msgid "Week start"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:231
+#: lib/class-bktskytscheduleradminpage.php:184
+msgid "Calendar header month format"
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:248
 msgid ""
 "Fields of this section will be used for URL slugs. All fields will be "
 "urlencoded."
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:233
+#: lib/class-bktskytscheduleradminpage.php:250
 msgid "After changing this section, permalink update is strongly recommended"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:245
+#: lib/class-bktskytscheduleradminpage.php:262
 msgid ""
 "This will be used for post type slug of the lives. \"live_schedule\" is the "
 "default. (When this field is empty.)"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:258
+#: lib/class-bktskytscheduleradminpage.php:275
 msgid ""
 "This will be used for taxonomy slug of the lives. \"live_category\" is the "
 "default. (When this field is empty.)"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:271
+#: lib/class-bktskytscheduleradminpage.php:288
 msgid ""
 "This will be used for iCalendar URL slug. \"bktsk_yt_live\" is the default. "
 "(When this field is empty.)"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:279
+#: lib/class-bktskytscheduleradminpage.php:296
 msgid "Fields of this section will be used on the iCalendar."
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:306
+#: lib/class-bktskytscheduleradminpage.php:323
 msgid ""
 "Fields of this section will be used just before title (VEVENT/SUMMARY) on "
 "the iCalendar."
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:308
+#: lib/class-bktskytscheduleradminpage.php:325
 msgid "When none given, nothing will be added."
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:345
+#: lib/class-bktskytscheduleradminpage.php:362
 msgid ""
 "Fields of this section will be used for displaying calendar using the "
 "shortcode"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:347
+#: lib/class-bktskytscheduleradminpage.php:364
 msgid "The shortcode is [bktsk-live-calendar] ."
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:356
+#: lib/class-bktskytscheduleradminpage.php:373
 msgid "Sunday"
 msgstr ""
 
-#: lib/class-bktskytscheduleradminpage.php:360
+#: lib/class-bktskytscheduleradminpage.php:377
 msgid "Monday"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:35
-#: lib/class-bktskytschedulershortcode.php:42
+#: lib/class-bktskytscheduleradminpage.php:392
+msgid ""
+"This will be used for the header of calendar displayed by shortcode. The "
+"format is as same as WordPress date format."
+msgstr ""
+
+#: lib/class-bktskytscheduleradminpage.php:394
+msgid "If none given, this will the format will be <code>Y-m</code>."
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:32
+#: lib/class-bktskytschedulershortcode.php:39
 msgid "Sun"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:36
+#: lib/class-bktskytschedulershortcode.php:33
 msgid "Mon"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:37
+#: lib/class-bktskytschedulershortcode.php:34
 msgid "Tue"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:38
+#: lib/class-bktskytschedulershortcode.php:35
 msgid "Wed"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:39
+#: lib/class-bktskytschedulershortcode.php:36
 msgid "Thu"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:40
+#: lib/class-bktskytschedulershortcode.php:37
 msgid "Fri"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:41
+#: lib/class-bktskytschedulershortcode.php:38
 msgid "Sat"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:289
-#: lib/class-bktskytschedulershortcode.php:293
+#: lib/class-bktskytschedulershortcode.php:234
+msgid "Previous"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:246
+msgid "Next"
+msgstr ""
+
+#: lib/class-bktskytschedulershortcode.php:359
+#: lib/class-bktskytschedulershortcode.php:363
 msgid "All day"
 msgstr ""
 
-#: lib/class-bktskytschedulershortcode.php:307
+#: lib/class-bktskytschedulershortcode.php:377
 msgid "None"
 msgstr ""
 
