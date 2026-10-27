@@ -1,9 +1,6 @@
 module.exports = {
-  plugins: ["stylelint-order", "stylelint-scss"],
-  extends: [
-    "./node_modules/prettier-stylelint/config.js",
-    "stylelint-config-standard"
-  ],
+  plugins: ["stylelint-order"],
+  extends: ["stylelint-config-standard-scss"],
   ignoreFiles: ["**/node_modules/**"],
   rules: {}
 };
